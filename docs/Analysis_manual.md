@@ -314,7 +314,7 @@ The data output by the hw method (_w.tif, _w.npy) is recorded as σ (value obtai
 
 **Fig 4. An example of  RC curves at each  point** 
 
-Figure 4 shows An example of  RC curves at each  point. Outside the area of the wafer is the noise level. In the edge region, a broad distribution can also be seen. In RC analysis, the filter parameter is set to exclude the outside of the wafer area from the analysis target. If the difference between the maximum value ($ y_ {max} $) and the minimum value ($ y_ {min} $) of the RC intensity is smaller than the filter value, it is regarded as noise and excluded from the analysis target. The value of Nan is input to the analysis value so as not to affect the calculation of the average value.
+Figure 4 shows An example of  RC curves at each  point. Outside the area of the wafer is the noise level. In the edge region, a broad distribution can also be seen. In RC analysis, the filter parameter is set to exclude the outside of the wafer area from the analysis target. If the difference between the maximum value ($y_{max}$) and the minimum value ($y_{min}$) of the RC intensity is smaller than the filter value, it is regarded as noise and excluded from the analysis target. The value of Nan is input to the analysis value so as not to affect the calculation of the average value.
 
 Conditions to be analyzed
 
@@ -328,14 +328,13 @@ $$
 y_ {max}> y_ {median} + PMAX
 $$
 
-In addition to the filter condition, if the maximum value of RC intensity ($ y_ {max} $) is smaller than the median value ($ y_ {median} $) + PMAX, it is excluded from the analysis target and Nan is input. Under this condition, an extremely broad distribution can be removed. In addition, Nan is input even when Fitting does not converge. (Extremely broad peaks often do not converge even if they are not removed under these conditions)
+In addition to the filter condition, if the maximum value of RC intensity ($y_{max}$) is smaller than the median value ($y_{median}$) + PMAX, it is excluded from the analysis target and Nan is input. Under this condition, an extremely broad distribution can be removed. In addition, Nan is input even when Fitting does not converge. (Extremely broad peaks often do not converge even if they are not removed under these conditions)
 
 Cases where Nan is input
 
 - hw method : (1)  $y_{max}-y_{min} < filter$ (Out of Wafer)
 
-- gaussian method :(1) $y_{max}-y_{min} < filter$ (Out of Wafer), (2) $y_{max} <y_{median} + PMAX$, (3) Fitting does not converge.
-
+- gaussian method :(1)  $y_{max}-y_{min} < filter$ (Out of Wafer), (2) $y_{max} <y_{median} + PMAX$, (3) Fitting does not converge.
 
 
 - RC calculation
@@ -433,8 +432,6 @@ Note: w is converted to FWHM instead of sigma. FWHM ~2.35xsigma
 ```
 
 
-
-
 ---
 
 #### (3) Image trimming
@@ -453,7 +450,6 @@ whm = 500
 wh_set = wh2
 tr_t_folder = imt.gui2trim(t_folder, wh=wh_set, NX=2368, NY=2240, time_out=120)
 ```
-
 
 ```python
 # psi=120
@@ -480,7 +476,7 @@ Fig.7 is a schematic diagram of the origin of the device and detector in our mea
 
 
 
-![sample_origin](figs/Origin1.PNG)
+![sample_origin](figs/origin1.PNG)
 
 **Fig.7　Schematic diagram of the origin of the device and detector in our measurement system and the resulting image**
 
@@ -490,7 +486,7 @@ Fig. 8 is a schematic diagram of the position of the sample placed on the sample
 
 
 
-![sample_setup](figs/Origin2.PNG)
+![sample_setup](figs/origin2.PNG)
 
 **Fig.8 Schematic diagram of the position of the sample placed on the sample table (upper side) with respect to the X-ray incident direction and the obtained image data (lower side) with the detector in our experimental setup.**
 
