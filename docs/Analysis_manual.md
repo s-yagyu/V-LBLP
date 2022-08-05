@@ -117,7 +117,7 @@ Note: opencv version is need to over 4.4.
 
 Note: After this paper is accepted, the web address of this sorce cord is entered.
 
-https://github.com/s-yagyu/ 
+https://github.com/s-yagyu/V-LBLP 
 
 
 
@@ -187,7 +187,7 @@ Data for each incident angle and data not irradiated with X-rays (dark data) are
 
 The angle file is a file that associates the incident angle information with the data file name. The Angle file is in csv format, and the column name of angel and filename is described on the 0th row, and the angle and file name are described on the 1st and subsequent rows. The angle unit is arcsec. The file extension is .txt.
 
-![holder](figs/folder.png)
+![holder](figs/folder.PNG)
 
 **Fig.2　Schematic diagram of experimental data folders and files**
 
