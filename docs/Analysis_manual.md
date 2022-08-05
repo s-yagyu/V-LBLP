@@ -317,13 +317,17 @@ The data output by the hw method (_w.tif, _w.npy) is recorded as σ (value obtai
 Figure 4 shows An example of  RC curves at each  point. Outside the area of the wafer is the noise level. In the edge region, a broad distribution can also be seen. In RC analysis, the filter parameter is set to exclude the outside of the wafer area from the analysis target. If the difference between the maximum value ($ y_ {max} $) and the minimum value ($ y_ {min} $) of the RC intensity is smaller than the filter value, it is regarded as noise and excluded from the analysis target. The value of Nan is input to the analysis value so as not to affect the calculation of the average value.
 
 Conditions to be analyzed
+
 $$
 y_ {max} -y_ {min}> filter
 $$
+
 The gaussian fitting method also sets PMAX.
+
 $$
 y_ {max}> y_ {median} + PMAX
 $$
+
 In addition to the filter condition, if the maximum value of RC intensity ($ y_ {max} $) is smaller than the median value ($ y_ {median} $) + PMAX, it is excluded from the analysis target and Nan is input. Under this condition, an extremely broad distribution can be removed. In addition, Nan is input even when Fitting does not converge. (Extremely broad peaks often do not converge even if they are not removed under these conditions)
 
 Cases where Nan is input
