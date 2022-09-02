@@ -65,7 +65,7 @@ In this manual, the procedure is described according to Method A. In addition, a
 - Method B for 2 directions: temp_rot2rc_2phi.ipynb 
 - Creating an Angle file: temp_anglefile.ipynb 
 
-As an analysis example, the 4-inch analysis result used in the paper [1] is attached to ex_rc2rot_4inch_3phi.html.
+As an analysis example, the 4-inch analysis result used in the paper [1] is attached to ex_rc2rot_4inch_3phi_gauss.html.
 
  In addition, other analysis reference examples are also attached to the example_html folder. 
 
@@ -86,9 +86,9 @@ As an analysis example, the 4-inch analysis result used in the paper [1] is atta
 
 #### Requrired modules 
 
-- Python 3.8 over
+- Python 3.8 over 
 
-- IDE: Visual studio code（recomended）
+- IDE: Visual studio code（recomend）
 
 ##### Pure python
 
@@ -115,9 +115,7 @@ Note: opencv version is need to over 4.4.
 
 - Clone or Zip from NIMS MDR ripositry or our github repository.
 
-Note: After this paper is accepted, the web address of this sorce cord is entered.
-
-https://github.com/s-yagyu/V-LBLP 
+https://github.com/s-yagyu/V-LBLP
 
 
 
@@ -135,20 +133,18 @@ src
 | |-Image_editor_manual.md
 |
 |-example_html							# example for analysis
-| |-ex_2inch_rc2rot_2phi_hw.html # Results of the 2-inch analysis 
-| |-ex_4inch_rc2rot_3phi_hw.html # Results of the 4-inch analysis used in this paper
-| |-ex_dd_d.html				 # Calculation dd/d
-| |-ex_radius_average.html		 # Calculate the average for the radial direction
-| |-ex_rc_filter.html			 # Check RC and determine filter value
+| |-ex_4inch_rc2rot_3phi_gauss.html # Results of the 4-inch analysis used in this paper
+| |-ex_dd_d.html				 	# Calculation dd/d
+| |-ex_radius_average.html		 	# Calculate the average for the radial direction
+| |-ex_rc_filter.html			 	# Check RC and determine filter value
 |
-|-image_editor					# affine transform of data using GUI
+|-image_editor						# affine transform of data using GUI
 | |-...(abbreviation)
 | |-affine_transformation_parameters_editor_r.py # GUI for data rotation (New version)
-| |-affine_transformation_parameters_editor.py #  (old version Not used)
 |
 |-qfit						# Main analysis module
 | |-...(abbreviation)
-| |-file_folder_trans.py	# file and folder search and transfer
+| |-file_folder_trans.py	# file and folder search, convert and  transfer
 | |-fit.py 					# RC calculation core Program
 | |-fit_q.py 				# interface for jupyter (calling functions)
 | |-radial_average.py 		# for radial direction analysis
@@ -156,7 +152,7 @@ src
 | |-image_treat.py 			# trimming and calling image editor
 | |-make_angle_file.py		# angle file core program
 | |-multiplot.py 			# for making figure
-| |-q2.py					# q calculation core Program
+| |-q2.py					# q calculation core program
 | |-re_analysis.py 			# data load and main analytical tools
 | |-re_plot.py 				# plot parts
 | |-d_limit.py 				# delta d calculation program
@@ -187,7 +183,7 @@ Data for each incident angle and data not irradiated with X-rays (dark data) are
 
 The angle file is a file that associates the incident angle information with the data file name. The Angle file is in csv format, and the column name of angel and filename is described on the 0th row, and the angle and file name are described on the 1st and subsequent rows. The angle unit is arcsec. The file extension is .txt.
 
-![holder](figs/folder.PNG)
+![holder](figs/folder.png)
 
 **Fig.2　Schematic diagram of experimental data folders and files**
 
@@ -314,27 +310,24 @@ The data output by the hw method (_w.tif, _w.npy) is recorded as σ (value obtai
 
 **Fig 4. An example of  RC curves at each  point** 
 
-Figure 4 shows An example of  RC curves at each  point. Outside the area of the wafer is the noise level. In the edge region, a broad distribution can also be seen. In RC analysis, the filter parameter is set to exclude the outside of the wafer area from the analysis target. If the difference between the maximum value ($y_{max}$) and the minimum value ($y_{min}$) of the RC intensity is smaller than the filter value, it is regarded as noise and excluded from the analysis target. The value of Nan is input to the analysis value so as not to affect the calculation of the average value.
+Figure 4 shows An example of  RC curves at each  point. Outside the area of the wafer is the noise level. In the edge region, a broad distribution can also be seen. In RC analysis, the filter parameter is set to exclude the outside of the wafer area from the analysis target. If the difference between the maximum value ($ y_ {max} $) and the minimum value ($ y_ {min} $) of the RC intensity is smaller than the filter value, it is regarded as noise and excluded from the analysis target. The value of Nan is input to the analysis value so as not to affect the calculation of the average value.
 
 Conditions to be analyzed
-
 $$
 y_ {max} -y_ {min}> filter
 $$
-
 The gaussian fitting method also sets PMAX.
-
 $$
 y_ {max}> y_ {median} + PMAX
 $$
-
-In addition to the filter condition, if the maximum value of RC intensity ($y_{max}$) is smaller than the median value ($y_{median}$) + PMAX, it is excluded from the analysis target and Nan is input. Under this condition, an extremely broad distribution can be removed. In addition, Nan is input even when Fitting does not converge. (Extremely broad peaks often do not converge even if they are not removed under these conditions)
+In addition to the filter condition, if the maximum value of RC intensity ($ y_ {max} $) is smaller than the median value ($ y_ {median} $) + PMAX, it is excluded from the analysis target and Nan is input. Under this condition, an extremely broad distribution can be removed. In addition, Nan is input even when Fitting does not converge. (Extremely broad peaks often do not converge even if they are not removed under these conditions)
 
 Cases where Nan is input
 
 - hw method : (1)  $y_{max}-y_{min} < filter$ (Out of Wafer)
 
-- gaussian method :(1)  $y_{max}-y_{min} < filter$ (Out of Wafer), (2) $y_{max} <y_{median} + PMAX$, (3) Fitting does not converge.
+- gaussian method :(1) $y_{max}-y_{min} < filter$ (Out of Wafer), (2) $y_{max} <y_{median} + PMAX$, (3) Fitting does not converge.
+
 
 
 - RC calculation
@@ -432,6 +425,8 @@ Note: w is converted to FWHM instead of sigma. FWHM ~2.35xsigma
 ```
 
 
+
+
 ---
 
 #### (3) Image trimming
@@ -450,6 +445,7 @@ whm = 500
 wh_set = wh2
 tr_t_folder = imt.gui2trim(t_folder, wh=wh_set, NX=2368, NY=2240, time_out=120)
 ```
+
 
 ```python
 # psi=120
@@ -476,7 +472,7 @@ Fig.7 is a schematic diagram of the origin of the device and detector in our mea
 
 
 
-![sample_origin](figs/origin1.PNG)
+![sample_origin](figs/Origin1.PNG)
 
 **Fig.7　Schematic diagram of the origin of the device and detector in our measurement system and the resulting image**
 
@@ -486,7 +482,7 @@ Fig. 8 is a schematic diagram of the position of the sample placed on the sample
 
 
 
-![sample_setup](figs/origin2.PNG)
+![sample_setup](figs/Origin2.PNG)
 
 **Fig.8 Schematic diagram of the position of the sample placed on the sample table (upper side) with respect to the X-ray incident direction and the obtained image data (lower side) with the detector in our experimental setup.**
 
@@ -889,7 +885,7 @@ python q2.py -t XXX(THETA).npy -c YYY(CAI).npy
 
 ### Reference
 
-#### XRLM analysis 
+#### V-LBLP analysis 
 
 [1] Sakata, O. , Yagyu, S. sbmitted.
 
@@ -918,7 +914,7 @@ Pages: 6-1–6-12
 
 ##### Patent
 
-[7] [[JP2019190965A](https://patents.google.com/patent/JP2019190965A/ja)](https://patents.google.com/patent/JP2019190965A) JP2019-190965A 結晶格子面分布測定方法 (2019)
+[7] [[JP2019190965A](https://patents.google.com/patent/JP2019190965A/ja)](https://patents.google.com/patent/JP2019190965A) JP2019-190965A
 
 
 
