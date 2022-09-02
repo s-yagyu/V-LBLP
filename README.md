@@ -6,7 +6,7 @@ This tool can be used to analyze and visualization of local bending of the latti
 
 The V-LBLP is a method of visualizing the minute "distortion" of the wafer crystal plane with the spatial resolution of the pixel size of the detector (50 micrometers in this device) on the entire surface of the wafer. 
 
-In the V-LBLP, the incident angle ($\\theta$) of X-rays is changed to a minute (about ± 300 arcsec from the Bragg reflection position), and two-dimensional X-ray Rocking-Curve (RC) is acquired. This measurement is performed by changing the incident direction ($\psi $: two or more directions) of the wafer. The peak analysis of RC, which is a function of the angle, is performed for each image pixel, and the angle component h (q) of the surface of the crystal plane is calculated using the analysis values of each direction.
+In the V-LBLP, the incident angle ($\theta$) of X-rays is changed to a minute (about ± 300 arcsec from the Bragg reflection position), and two-dimensional X-ray Rocking-Curve (RC) is acquired. This measurement is performed by changing the incident direction ($\psi $: two or more directions) of the wafer. The peak analysis of RC, which is a function of the angle, is performed for each image pixel, and the angle component h (q) of the surface of the crystal plane is calculated using the analysis values of each direction.
 
 The tool consists of the following three.
 
@@ -59,7 +59,7 @@ In this manual, the procedure is described according to Method A. In addition, a
 - Method B for 2 directions: temp_rot2rc_2phi.ipynb 
 - Creating an Angle file: temp_anglefile.ipynb 
 
-As an analysis example, the 4-inch analysis result used in the paper [1] is attached to ex_rc2rot_4inch_3phi.html.
+As an analysis example, the 4-inch analysis result used in the paper [1] is attached to ex_rc2rot_4inch_3phi_gauss.html.
 
  In addition, other analysis reference examples are also attached to the html folder. 
 
@@ -112,4 +112,4 @@ Note: opencv version is need to over 4.4.
 
 Note: After this paper is accepted, the web address of this sorce cord is entered.
 
-https://github.com/s-yagyu/V-LBLP
+https://github.com/s-yagyu/ 
