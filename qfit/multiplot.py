@@ -1,3 +1,14 @@
+"""
+multiplot module
+
+"""
+__author__ = "Shinjiro Yagyu"
+__license__ = "BSD-3-Clause"
+__copyright__ = "National Institute for Materials Science, Japan"
+__date__ = "2022/09/02"
+__version__= "1.0.0"
+__revised__ = "2022/09/02"
+
 from pathlib import Path
 from PIL import Image
 import re
@@ -12,14 +23,8 @@ from mpl_toolkits.mplot3d import Axes3D
 from qfit import re_analysis as rean
 from qfit import re_plot as replt
 
-
 # memo figsize=(width,height) wdth:height= 4:3 unit
 # (row,col)->figsize(col*4,row*3): (3,4)->figsize(16,9)
-
-# width_u = 4
-# height_u = 3
-# width_u = 4.8
-# height_u = 3.6
 
 width_u = 5.2
 height_u = 4
@@ -29,7 +34,7 @@ PIX_SIZE = 0.05
 
 # save figure parameter
 DPI = 300
-EXT = 'pdf' # png, jpg
+EXT = 'png' # png, jpg, pdf
 
 plt.rcParams["font.size"] = 14
 plt.rcParams['font.family']= 'sans-serif'
@@ -64,10 +69,10 @@ def rc_12plots(read_rc_data, data_range=None, peak_range =(0,0),width_range =(0,
                row_num=None, title='RC12plot', save=False, dpi=DPI, ext=EXT, pixel_size=PIX_SIZE):
     """12 plots for RC
 
-    plots
-    (1)c (2)ct, (3)line-ct, (4) hist-ct
-    (5)w, (6)wt, (7)line-wt, (8) hist-wt
-    (9)h,(10)hist-h, (11)ht, (12) hist-ht
+        plots
+        (1)c (2)ct, (3)line-ct, (4) hist-ct
+        (5)w, (6)wt, (7)line-wt, (8) hist-wt
+        (9)h,(10)hist-h, (11)ht, (12) hist-ht
   
     Args:
         read_rc_data (dict): rc load data name
@@ -227,10 +232,8 @@ def rc_2plots(read_rc_data, data_range=None, peak_range=(0,0),width_range=(0,0),
 def rc_3plots(read_rc_data, data_range=None, peak_range =(0,0),width_range =(0,0),height_range =(0,0),
               title='RC3plot', save=False, dpi=DPI, ext=EXT, pixel_size=PIX_SIZE):
     """3 plots for RC
-
-    rc data:{'c': peak (arecsec), 'h':height, 'w':width (arcsec), 'ct':peak-ave (deg), 'ht':height-ave, 'wt':width (deg)}
-    plots
-    (1)ct (2)wt, (3)h
+        
+        (1)ct (2)wt, (3)h
   
     Args:
         read_rc_data (dict): rc load data name
@@ -614,17 +617,16 @@ def qp3_3plots(q_dict, title='q polar', xy_range=(0,0.01),step=200, save=False, 
 
 def qp3_1plots(q_dict, title='q polar', xy_range=(0,0.01),step=200, save=False, dpi=DPI, ext=EXT, pixel_size=PIX_SIZE,magnify=800):
     """3d-image plot
- 
-
-    Args:
-        q_dict (dict): q load data {'x':qx, 'y':qy, 'z':qz, 'xy':qxy, 'ang':q_ang, 'angxy':q_angxy, 'r':q_r}
-        title (str, optional): figure title. Defaults to 'q polar'.
-        xy_range (tuple,optional): image plot v_range. if (0,0), autoscale. Default to (0,0.01).
-        step (int, optional): quiver step. Default to 200.
-        save (bool, optional): save. Defaults to False.
-        ext (str,optional): save image type suffix. Default to EXT.
-        dpi (int, optional): dpi. Default to DPI.
-        pixel_size(float, optional): detctor pixel size [mm]. Default to 0.05.
+    
+        Args:   
+            q_dict (dict): q load data {'x':qx, 'y':qy, 'z':qz, 'xy':qxy, 'ang':q_ang, 'angxy':q_angxy, 'r':q_r}
+            title (str, optional): figure title. Defaults to 'q polar'.
+            xy_range (tuple,optional): image plot v_range. if (0,0), autoscale. Default to (0,0.01).
+            step (int, optional): quiver step. Default to 200.
+            save (bool, optional): save. Defaults to False.
+            ext (str,optional): save image type suffix. Default to EXT.
+            dpi (int, optional): dpi. Default to DPI.
+            pixel_size(float, optional): detctor pixel size [mm]. Default to 0.05.
         
     """
     

@@ -4,6 +4,14 @@ Wrappers for fit.py and q2.py
 
 """
 
+__author__ = "Shinjiro Yagyu"
+__license__ = "BSD-3-Clause"
+__copyright__ = "National Institute for Materials Science, Japan"
+__date__ = "2022/09/02"
+__version__= "1.0.0"
+__revised__ = "2022/09/02"
+
+
 from pathlib import Path
 import subprocess
 from subprocess import PIPE
@@ -22,6 +30,7 @@ FIT_path = str(list(P.glob('**/fit.py'))[0])
 #./qfit/q2.py
 # q2_path = str(list(P.glob('*/q2.py'))[0])
 q2_path = str(list(P.glob('**/q2.py'))[0])
+
 
 # print(FIT_path)
 # print(q_path)

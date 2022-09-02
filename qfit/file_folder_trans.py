@@ -1,5 +1,6 @@
 """
-Analysis procedure
+file converter
+npy to tif, tif to npy
 
 All File transfer format is tif
 .npy -> fd.tif
@@ -7,23 +8,31 @@ fd.tif -> .npy
 fd.tif -> new fd.tif
 
 Memo
-rot:affin transform GUI
-rc: fit.py
-q:q.py
+rot (image rotation):affin transform GUI
+rc : fit.py
+q :q2.py
+T, T2 :file converter
+fd:folder
 
-original:method 2 (rot2rc): 
-image rotation(fd.tif-> new fd.tif) -> RC(fd.tif->.npy) 
--> T(.npy->fd.tif) -> triming(fd.tif->new fd.tif) 
--> T2(fd.tif->.npy) -> q(.npy->.npy)-> T(.npy->fd.tif)
-
-method 1 (rc2rot): 
-RC(.tif->.npy) -> T(.npy->fd.tif) -> triming(fd.tif->new fd.tif)
+method A (rc2rot): 
+RC(.tif->.npy) -> T(.npy->fd.tif) -> trimming(fd.tif->new fd.tif)
 -> image rotaion(fd.tif->new fd.tif) -> T2(fd.tif->.npy) 
 -> q(.npy->.npy)-> T(.npy->fd.tif)
 
-outputdata -> include in folder
+method B (rot2rc): 
+image rotation(fd.tif-> new fd.tif) -> RC(fd.tif->.npy) 
+-> T(.npy->fd.tif) -> trimming(fd.tif->new fd.tif) 
+-> T2(fd.tif->.npy) -> q(.npy->.npy)-> T(.npy->fd.tif)
  
 """
+
+__author__ = "Shinjiro Yagyu"
+__license__ = "BSD-3-Clause"
+__copyright__ = "National Institute for Materials Science, Japan"
+__date__ = "2022/09/02"
+__version__= "1.0.0"
+__revised__ = "2022/09/02"
+
 
 from pathlib import Path
 import shutil

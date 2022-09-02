@@ -8,8 +8,14 @@ https://rasp.hateblo.jp/entry/2016/01/22/230852
 https://www.oit.ac.jp/is/nishiguchi-lab/?OpenCV-Python+%E6%BC%94%E7%BF%92/tutorial_008py
 
 """
-import os
-import shutil
+
+__author__ = "Shinjiro Yagyu"
+__license__ = "BSD-3-Clause"
+__copyright__ = "National Institute for Materials Science, Japan"
+__date__ = "2022/09/02"
+__version__= "1.0.0"
+__revised__ = "2022/09/02"
+
 from pathlib import Path
 import subprocess
 from subprocess import PIPE

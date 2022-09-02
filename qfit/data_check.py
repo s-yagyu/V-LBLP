@@ -2,6 +2,13 @@
 # -*- coding: utf-8 -*-
 # This module is for creating RC and displays.
 
+__author__ = "Shinjiro Yagyu"
+__license__ = "BSD-3-Clause"
+__copyright__ = "National Institute for Materials Science, Japan"
+__date__ = "2022/09/02"
+__version__= "1.0.0"
+__revised__ = "2022/09/02"
+
 from pathlib import Path
 import sys
 import csv
@@ -15,6 +22,7 @@ def error(msg):
     "print message 'msg' and exit program"
     print(msg)
     sys.exit(1)
+
 
 def statistics_info(xs, printf=True):
     

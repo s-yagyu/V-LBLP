@@ -1,4 +1,15 @@
+"""
+plot module
+"""
+__author__ = "Shinjiro Yagyu"
+__license__ = "BSD-3-Clause"
+__copyright__ = "National Institute for Materials Science, Japan"
+__date__ = "2022/09/02"
+__version__= "1.0.0"
+__revised__ = "2022/09/02"
+
 from pathlib import Path
+from turtle import color
 from PIL import Image
 
 import numpy as np
@@ -328,9 +339,6 @@ def plot_quiver2d_ax(qx_data, qy_data, qxy_data, axi=None, step=250, title='Vect
     x_ticks = ax_.get_xticks()[0:-1]
     y_ticks = ax_.get_yticks()[0:-1]
     
-    # x_labels = [f'{i}' for i in x_ticks]
-    # y_labels = [f'{i}' for i in y_ticks]
-    
     x_labels = [f'{int(i)}' for i in x_ticks]
     y_labels = [f'{int(i)}' for i in y_ticks]
     
@@ -395,8 +403,6 @@ def plot_quiver3d_ax(qx_data, qy_data, qz_data, qxy_data, axi=None, step=250, ti
     xx, yy = np.meshgrid(xo, yo)
     xxs, yys = np.meshgrid(xs, ys)
     
-    # ax_.invert_yaxis()
-    # ydata =-ydata
     
     ax_.quiver(yys, xxs, 0, ydata*magnify, xdata*magnify, zdata, color='red', 
                arrow_length_ratio=0.3,) #normalize=True
@@ -413,8 +419,7 @@ def plot_quiver3d_ax(qx_data, qy_data, qz_data, qxy_data, axi=None, step=250, ti
     # x_labels = [f'{i*pixel_size*step}' for i in x_ticks]
     # y_labels = [f'{i*pixel_size*step}' for i in y_ticks]
     
-    # x_labels = [f'{i}' for i in x_ticks]
-    # y_labels = [f'{i}' for i in y_ticks]
+
     x_labels = [f'{int(i)}' for i in x_ticks]
     y_labels = [f'{int(i)}' for i in y_ticks]
     
@@ -435,7 +440,7 @@ def plot_quiver3d_ax(qx_data, qy_data, qz_data, qxy_data, axi=None, step=250, ti
     
     else:
         return ax_
-
+    
 
 def plot_3d_ax(qxy_data, axi=None, title='3d', pixel_size=PIX_SIZE, elev=45, azim=45, ):
     """ 3d plot image plot
@@ -465,8 +470,6 @@ def plot_3d_ax(qxy_data, axi=None, title='3d', pixel_size=PIX_SIZE, elev=45, azi
     
     img_copy = qxy_data.copy()
     img_copy[np.isnan(qxy_data)] = 0
-    # img_copy[np.isnan(qxy_data)] = float("nan")
-
 
     xo = np.linspace(0, (wo-1)*pixel_size, wo)
     yo = np.linspace(0, (ho-1)*pixel_size, ho)
@@ -493,8 +496,6 @@ def plot_3d_ax(qxy_data, axi=None, title='3d', pixel_size=PIX_SIZE, elev=45, azi
     # x_labels = [f'{i*pixel_size*step}' for i in x_ticks]
     # y_labels = [f'{i*pixel_size*step}' for i in y_ticks]
     
-    # x_labels = [f'{i}' for i in x_ticks]
-    # y_labels = [f'{i}' for i in y_ticks]
     x_labels = [f'{int(i)}' for i in x_ticks]
     y_labels = [f'{int(i)}' for i in y_ticks]
     
@@ -600,91 +601,7 @@ def plot_hist_ax(plot_data, axi=None, data_range=None, x_range=(0,0.15), bins_=1
     else:
         return ax_    
 
-# def plot_hist_ax(plot_data, axi=None, data_range=None, x_range=(0,0.15), bins_=100, density=True,
-#                 title='Histgram', xlabel="Relative tilting angle [deg]", quantail=1.0):
-#     """hist plot
-
-#     Args:
-#         plot_data (2D ndarray): image plot data
-#         axi (optional): one ax object. Defaults to None.
-#         data_range (tuple, optional): 
-#                         (str_x,end_x,str_y,end_y) Defaults to None.
-#         x_range (tuple, optional): x axis range. Defaults to (0,0.15).
-#                                     (0,0)-> autoscale
-#         bins_ (int, optional): bins. Defaults to 100.
-#         norm (bool, optional): normalize. Defaults to True.
-#         xlabel (str, optional): xlabel. Defaults to "Relative tilting angle [deg]".
-#         quantail (float, opttional): remove high value.  range 0.5 (median) to 1.0 Defaults to 1.0
-
-#     Returns:
-#         if  axi != None -> ax
-#         axi  = None -> None 
-    
-#     example:
-#         plot_hist_ax(plot_data=q2['qx'],axi=None, data_range, x_range=(0,0.15),
-#                     bins_=100,density=True,xlabel="Relative tilting angle [deg]")
-#     """
-    
-#     def data_quantail(data,val=0.85):
-#         wt_temp = data
-#         wt_temp =np.where(wt_temp < np.nanquantile(data,val), wt_temp, np.nan)
-#         return wt_temp 
-     
-#     h, w = plot_data.shape
-    
-#     if data_range == None:
-#         # sty, edy = 0, h 
-#         # stx, edx = 0, w
-#         select_data = plot_data
-#     else:
-#         stx, edx = data_range[0], data_range[1]
-#         sty, edy = data_range[2], data_range[3] 
-#         select_data = plot_data[sty:edy,stx:edx]
-    
-#     xyzdata = select_data.reshape(-1)
-    
-#     xyzdata = data_quantail(xyzdata,val=quantail)
-    
-#     xyzdata = xyzdata[~np.isnan(xyzdata)]
-    
-#     if axi == None:
-#         fig_ = plt.figure()
-#         ax_ = fig_.add_subplot(111)
-
-#     else:
-#         ax_ = axi
         
-#     if norm:
-#         hist, edges = np.histogram(xyzdata, bins=bins_, density=True)
-#         w = edges[1] - edges[0]
-#         hist = hist * w
-#         ax_.bar(edges[:-1], hist, w)
-#         if x_range == (0,0):
-#             pass
-#         else:
-#             ax_.set_xlim(*x_range)
-#         ax_.set_ylabel("Probability")
-#         ax_.set_xlabel(xlabel)
-
-#     else:
-#         ax_.hist(xyzdata, bins=bins_, density=True)
-#         if x_range == (0,0):
-#             pass
-#         else:
-#             ax_.set_xlim(*x_range)
-#         # ax.set_ylabel("Probability")
-#         ax_.set_xlabel(xlabel)
-        
-#     ax_.set_title(title)
-    
-#     if axi == None:
-#         plt.show()
-#         return  None
-
-#     else:
-#         return ax_
-        
-
 def plot_xyline_ax(plot_data, axi=None, data_range=None, v_range=(0,0), title='Cross section', 
                     row_num=500, col_num=500, origin='upper', pixel_size=PIX_SIZE):
     """xy lineprofile
@@ -808,244 +725,3 @@ def plot_text_ax(text_list, axi):
         axi.text(0,10-i,ml)
 
     return axi
-
-
-# --- old Not Used ---
-
-def q_12plots(qx, qy, qz, title='', data_range=None, step=50, origin='upper', hist_x_range=(0,0.2), save=False, dpi=1800, arrow=False, sig_select=False):
-    """12 plots for q  vector
-    
-    (1)qx, (2)qy, (3)qz, (4) qxy
-    (5)polar cos x, (6)cos x sign, (7) polar cos x hist,(8)qxy vector
-    (9)polar cos y, (10) cos y sign (11)polar cos y hist, (12) qxy tilting angle hist
-    origin ='upper' or 'lower'
-    
-    Args:
-        qx (2d-ndarray): qx data
-        qy (2d-ndarray): qy data
-        qz (2d-ndarray): qz data
-        title (str, optional): figure title name. Defaults to ''.
-        origin (str, optional): origin position. Defaults to 'upper'.
-        save (bool, optional): save image save name is 'title' name
-        dpi (int, optional): dpi. Default to 1800.
-
-    Returns:
-        void
-    """
-    nrow=3
-    ncol=4
-    fig, ax = plt.subplots(nrow, ncol, figsize=(16,10), squeeze=False, tight_layout=True)
-    # fig, ax = plt.subplots(flow, fcol, figsize=(12,10))
-
-    # Polar codinates
-    qcx = qx.copy()
-    qcy = qy.copy()
-    q_r, q_t = rean.getRD(x=qcx, y=qcy, out_deg_or_rad='rad')
-    q_ri, q_ti = rean.getRD(y=qcx, x=qcy, out_deg_or_rad='rad')
-    qcx=np.cos(q_t)
-    qcy=np.cos(q_ti)
-    
-    def select_array(ndata):
-        x = ndata
-        # condlist = [x<=-0.5, (x > -0.5) & (x < 0), x==0, (x > 0) & (x < 0.5), x>=0.5]
-        # choicelist = [-1,-0.5,0,0.5,1]
-        condlist = [x<=-0.5, (x > -0.5) & (x < 0.5), x>=0.5]
-        choicelist = [-1,0,1]
-        y =np.select(condlist, choicelist, np.nan)
-
-        return y
-    
-    if sig_select == True:
-
-        qcxsig = select_array(qcx)
-        qcysig = select_array(qcy)
-    else:
-        qcxsig = np.sign(qcx)
-        qcysig = np.sign(qcy)
-
-    qxy = np.hypot(qx, qy)
-    qxyz_ang = np.rad2deg(np.arctan(qxy/np.abs(qz)))
-
-    ax_list=[]    
-    for i in range(nrow):
-        for j in range(ncol):
-            ax_list.append(ax[i,j])
-    
-    ax0, im0, cax0 = plot_imshow_ax(plot_data=qx, axi=ax_list[0], 
-                                         data_range=data_range, v_range=(0,0), title='qx',origin=origin)
-    ax1, im1, cax1 = plot_imshow_ax(plot_data=qy, axi=ax_list[1], 
-                                         data_range=data_range, v_range=(0,0), title='qy',origin=origin)
-    ax2, im2, cax2 = plot_imshow_ax(plot_data=qz, axi=ax_list[2], 
-                                         data_range=data_range, v_range=(0,0), title='qz',origin=origin)
-    ax3, im3, cax3 = plot_imshow_ax(plot_data=qxy, axi=ax_list[3], 
-                                         data_range=data_range, v_range=(0,0), title='$\|qxy\|=\sqrt{qx^{2}+qy^{2}}$',origin=origin) 
-    # 'qxy=$\sqrt{q^{2}_{x}+q^{2}_{y}}$'
-    # cax3.yaxis.get_major_formatter().set_useOffset(False)
-    
-    # cax3.yaxis.set_major_formatter(ticker.FormatStrFormatter("%.2f"))
-    ax4, im4, cax4 = plot_imshow_ax(plot_data=qcx, axi=ax_list[4], 
-                                         data_range=data_range, v_range=(-1.1,1.1), 
-                                         title='x cos value',
-                                         origin=origin, arrow=arrow)
-    # title=r'$cos\theta = \left(\frac{\vec{qxy}\cdot\vec{ux}}{\|qxy\|\|ux\|}\right)$'
-    ax5 = plot_hist_ax(plot_data=qcx, axi=ax_list[5], data_range=data_range, x_range=(-1.1,1.1),
-                        bins_=100,density=True,title='x cos value histgram', xlabel='x cos value')
-    ax6, im6, cax6 = plot_imshow_ax(plot_data=qcxsig, axi=ax_list[6], 
-                                         data_range=data_range, v_range=(-1.1,1.1), title='x sign',origin=origin, arrow=arrow)                                
-
-    ax7 = plot_quiver_ax(qx_data=qx, qy_data=qy, axi=ax_list[7], step=step, title='Distortion direction', origin=origin)
-    
-    ax8, im8, cax8 = plot_imshow_ax(plot_data=qcy, axi=ax_list[8], 
-                                         data_range=data_range, v_range=(-1.1,1.1), 
-                                         title='y cos value',
-                                         origin=origin, arrow=arrow)
-    ax9 = plot_hist_ax(plot_data=qcy, axi=ax_list[9], data_range=data_range, x_range=(-1.1,1.1),
-                           bins_=100,density=True, title='y cos value histgram', xlabel='y cos value')
-    ax10, im10, cax10 = plot_imshow_ax(plot_data=qcysig, axi=ax_list[10], 
-                                         data_range=data_range, v_range=(-1.1,1.1), title='y sign',origin=origin, arrow=arrow)                                       
-
-    ax11 = plot_hist_ax(plot_data=qxyz_ang, axi=ax_list[11], data_range=data_range, x_range=hist_x_range,
-                           bins_=100, density=True, title='Tilting angle histgram',xlabel='Relative tilting angle [deg]')
-    
-    
-    fig.colorbar(im0,ax=ax0,cax=cax0)
-    fig.colorbar(im1,ax=ax1,cax=cax1)
-    fig.colorbar(im2,ax=ax2,cax=cax2,format='%.5f')
-    fig.colorbar(im3,ax=ax3,cax=cax3)
-    fig.colorbar(im4,ax=ax4,cax=cax4)
-    fig.colorbar(im6,ax=ax6,cax=cax6)
-    fig.colorbar(im8,ax=ax8,cax=cax8)
-    fig.colorbar(im10,ax=ax10,cax=cax10)
-
-    plt.tight_layout()
-    fig.suptitle(title)
-    # plt.gray()
-    if save:
-        plt.savefig(f"{title.replace(' ', '_')}.png", dpi=dpi)
-    plt.show()
-
-def q_12xyplots(qx, qy, qz, title='',data_range=None, row_num=None, col_num=None, origin='upper', save=False, dpi=1800):
-    """12 plots for q  vector
-    
-    (1)qx, (2)x-line, (3)y-line, (4)hist
-    (5)qy, (6)x-line, (7)y-line, (8)hist
-    (9)qxy, (10)x-line, (11)y-line, (12)hist
-    
-    origin ='upper' or 'lower'
-    
-    Args:
-        qx (2d-ndarray): qx data
-        qy (2d-ndarray): qy data
-        qz (2d-ndarray): qz data
-        title (str, optional): figure title name. Defaults to ''.
-        origin (str, optional): origin position. Defaults to 'upper'.
-        save (bool, optional): save image save name is 'title' name
-        dpi (int, optional): dpi. Default to 1800.
-    Returns:
-        void
-    """
-    nrow=3
-    ncol=4
-    fig, ax = plt.subplots(nrow, ncol, figsize=(16,10), squeeze=False, tight_layout=True)
-    # fig, ax = plt.subplots(flow, fcol, figsize=(12,10))
-
-    h,w  = qz.shape
-    qxy = np.hypot(qx, qy)
-    qxyz_ang = np.rad2deg(np.arctan(qxy/np.abs(qz)))
-
-    if row_num == None:
-        row_num = h/2
-
-    if col_num == None:
-        col_num =w/2
-
-    ax_list=[]    
-    for i in range(nrow):
-        for j in range(ncol):
-            ax_list.append(ax[i,j])
-    
-    ax0, ax1, ax2, im0, cax0 = plot_xyline_ax(plot_data=qx, axi=ax_list[0:3], 
-                                            data_range=data_range, v_range=(0,0), title='qx', 
-                                            row_num=row_num, col_num=col_num,origin=origin)
-    ax3 = plot_hist_ax(plot_data=qx, axi=ax_list[3], data_range=data_range, x_range=(0,0),
-                        bins_=100,density=True,xlabel='qx')
-    
-    ax4, ax5, ax6, im4, cax4 = plot_xyline_ax(plot_data=qy, axi=ax_list[4:7], 
-                                            data_range=data_range, v_range=(0,0), title='qy', 
-                                            row_num=row_num, col_num=col_num,origin=origin)
-    ax7 = plot_hist_ax(plot_data=qy, axi=ax_list[7], data_range=data_range, x_range=(0,0),
-                        bins_=100,density=True,xlabel='qy')
-    
-    ax8, ax9, ax10, im8, cax8 = plot_xyline_ax(plot_data=qxy, axi=ax_list[8:11], 
-                                            data_range=data_range, v_range=(0,0), title='|qxy|', 
-                                            row_num=row_num, col_num=col_num,origin=origin)
-    
-    ax11 = plot_hist_ax(plot_data=qxy, axi=ax_list[11], data_range=data_range, x_range=(0,0),
-                        bins_=100,density=True,xlabel='|qxy|')
-    
-    
-    fig.colorbar(im0,ax=ax0,cax=cax0)
-    fig.colorbar(im4,ax=ax4,cax=cax4)
-    fig.colorbar(im8,ax=ax8,cax=cax8)
-
-    # plt.tight_layout()
-    fig.suptitle(title)
-    # plt.gray()
-    if save:
-        plt.savefig(f"{title.replace(' ', '_')}.png", dpi=dpi)
-    plt.show()
-
-   
-def q_3plots(qx, qy, qz, title='', data_range=None, step=50, origin='upper', hist_x_range=(0,0.2), save=False, dpi=1800, arrow=False):
-    """3 plots for q  vector
-
-    (1) qxy
-    (2)qxy vector
-    (3) qxy tilting angle hist
-    
-    origin ='upper' or 'lower'
-    
-    Args:
-        qx (2d-ndarray): qx data
-        qy (2d-ndarray): qy data
-        qz (2d-ndarray): qz data
-        title (str, optional): figure title name. Defaults to ''.
-        origin (str, optional): origin position. Defaults to 'upper'.
-        save (bool, optional): save image save name is 'title' name
-        dpi (int, optional): dpi. Default to 1800.
-
-    Returns:
-        void
-    """
-    nrow=1
-    ncol=3
-    fig, ax = plt.subplots(nrow, ncol, figsize=(16,6), squeeze=False, tight_layout=True)
-    # fig, ax = plt.subplots(flow, fcol, figsize=(12,10))
-
-    qxy = np.hypot(qx, qy)
-    qxyz_ang = np.rad2deg(np.arctan(qxy/np.abs(qz)))
-
-    ax_list=[]    
-    for i in range(nrow):
-        for j in range(ncol):
-            ax_list.append(ax[i,j])
-    
-   
-    ax0, im0, cax0 = plot_imshow_ax(plot_data=qxy, axi=ax_list[0], 
-                                         data_range=data_range, v_range=(0,0), title='$\|qxy\|=\sqrt{qx^{2}+qy^{2}}$',origin=origin, arrow=arrow) 
-                                   
-    ax1 = plot_quiver_ax(qx_data=qx, qy_data=qy, axi=ax_list[1], step=step, title='Distortion direction', origin=origin)
-    
-    ax2 = plot_hist_ax(plot_data=qxyz_ang, axi=ax_list[2], data_range=data_range, x_range=hist_x_range,
-                           bins_=100,density=True, title='Tilting angle histgram', xlabel='Relative tilting angle [deg]')
-    
-    
-    fig.colorbar(im0,ax=ax0,cax=cax0)
-   
-    plt.tight_layout()
-    fig.suptitle(title)
-    # plt.gray()
-    if save:
-        plt.savefig(f"{title.replace(' ', '_')}.png", dpi=dpi)
-    plt.show()
-    

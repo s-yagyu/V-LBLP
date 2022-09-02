@@ -1,5 +1,5 @@
 """
-Estimate d  and psi limit
+Estimate d and psi limit
 
 |Δd/d| < (∆λ/λ) -  (Δpcot(θB)/(2Lsin(2θB)))
 
@@ -19,6 +19,13 @@ example condtions
 - |∆ψ| is smaller than 1.0x 10-4rad (=0.0057◦) at L=0.5 m.
 
 """
+
+__author__ = "Shinjiro Yagyu"
+__license__ = "BSD-3-Clause"
+__copyright__ = "National Institute for Materials Science, Japan"
+__date__ = "2022/09/02"
+__version__= "1.0.0"
+__revised__ = "2022/09/02"
 
 from pathlib import Path
 import re
@@ -158,7 +165,7 @@ def dpsi_calc_4plot(data, title='$\Delta \Psi$', dp_xange=(0,2.5e-4),
                     ramda=1.284, d=1.004, dp=0.05, L=500, drr=2.8e-04, pixel_size=0.05,
                     save=False, dpi=300, ext='pdf'):
 
-    """Calculation and display  of |∆ψ| limit
+    """Calculation and display of |∆ψ| limit
     |∆ψ| < ∆p/L = 1.0x 10-4rad (=0.0057◦)
     (1) RC analysis result, (2) result of limitation values
     (3) Difference between neighboring pixels toword vertical , (4) (3)'s histgram
@@ -213,8 +220,7 @@ def dpsi_calc_4plot(data, title='$\Delta \Psi$', dp_xange=(0,2.5e-4),
                     f'|∆ψ| < ∆p/L = 1.0 x 10-4 rad (=0.0057◦)'
                     ]
                     #'Result','|Δd/d| = 2e-4/1.006 = 1.988e-04<2.18e-04','97.5% in 2.18e-4'
-    # width_u = 4.8
-    # height_u = 3.6
+
     width_u = 5.2
     height_u = 4
     nrows=2

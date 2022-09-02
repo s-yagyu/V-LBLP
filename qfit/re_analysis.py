@@ -2,8 +2,16 @@
 re-analsys tools
     Data load (rc,q)
     converting x,y to polar codinates(r,theta)
-    calculating curveture 
+
 """
+
+__author__ = "Shinjiro Yagyu"
+__license__ = "BSD-3-Clause"
+__copyright__ = "National Institute for Materials Science, Japan"
+__date__ = "2022/09/02"
+__version__= "1.0.0"
+__revised__ = "2022/09/02"
+
 from pathlib import Path
 
 import numpy as np
@@ -604,133 +612,6 @@ def d3_inner_product(qx,qy,qz):
     quz = np.array(uz_cos).reshape(shape_)
     
     return qux, quy, quz
-
-# --- load data old (Not Used) ---
-def load_rc_data(rc_data_name, NX=2368, NY=2240, tif_save=False):
-    """load RC data (peak, width and hight)
-
-    Argas:
-        rc_data_name (str):
-        # image.shape h(row),w(col) = 2240(NY) x 2368(NX)
-        NX (int): image shape width, default=2368
-        NY (int): image shape hight, default=2240
-        tif_save (bool): default=False
-
-    Returns:
-        dict: {'c':cr, 'w':wr, 'h':hr, 'cca':cav, 'cw':cwr, 'ch':chr}
-        c: fitting peak [arcsec]
-        w: fitting width [arcsec]
-        h: fitting hight
-        cca: caribrated peak-> fitting peak -average peak [deg]
-        cw: caribrated width [deg]
-        ch: caribrated intensity -> (fitting intensity -average intensity)/average intensity
-
-    Example:
-        rc_data_name = 'hw_210630_135306'
-        rc = load_rc_data(rc_data_name, NX=2368, NY=2240, tif_save=False)
-        # {'c':cr, 'w':wr, 'h':hr, 'cca':cav, 'cw':cwr, 'ch':chr}
-   
-    Note:
-        image.shape h(row),w(col) = 2240(NY) x 2368(NX)
-        origin:upper left
-        x direction -> upper left to right : x-axis(w,0)
-        y direction -> upper left to lowler left : y-axis(0,h)
-
-    """
-    
-    file_lists = fft.folder_file_list(rc_data_name)
-    c_data = f'{rc_data_name}_c.npy'
-    w_data = f'{rc_data_name}_w.npy'
-    h_data = f'{rc_data_name}_h.npy'
-    cdata = np.fromfile(c_data,dtype=np.float32)
-    wdata = np.fromfile(w_data,dtype=np.float32)
-    hdata = np.fromfile(h_data,dtype=np.float32)
-
-    cavg = np.mean(cdata[~np.isnan(cdata)])
-    havg = np.mean(hdata[~np.isnan(hdata)])
-    # convert arcsec to deg
-    arcsec2deg = (1/3600)
-    c_ave_data = (cdata - cavg) * arcsec2deg 
-    c_wdata = np.abs(wdata * arcsec2deg)
-    c_hdata = (hdata-havg)/havg
-
-    cr = cdata.reshape(NX,NY) # unit arcsec
-    wr = wdata.reshape(NX,NY) # unit arcsec
-    hr = hdata.reshape(NX,NY)
-    cav = c_ave_data.reshape(NX,NY) # unit deg
-    cwr = c_wdata.reshape(NX,NY) # unit deg
-    chr = c_hdata.reshape(NX,NY)
-
-
-    if tif_save:
-        Path(rc_data_name).mkdir(exist_ok=True)
-        c_tif = f'{rc_data_name}/{rc_data_name}_c.tif'
-        w_tif = f'{rc_data_name}/{rc_data_name}_w.tif'
-        h_tif = f'{rc_data_name}/{rc_data_name}_h.tif'
-        cav_tif = f'{rc_data_name}/{rc_data_name}_cav.tif'
-        cw_tif = f'{rc_data_name}/{rc_data_name}_cw.tif'
-        ch_tif = f'{rc_data_name}/{rc_data_name}_ch.tif'
-
-        Image.fromarray(cr).save(c_tif)
-        Image.fromarray(wr).save(w_tif)
-        Image.fromarray(hr).save(h_tif)
-        Image.fromarray(cav).save(cav_tif)
-        Image.fromarray(cwr).save(cw_tif)
-        Image.fromarray(chr).save(ch_tif)
-
-    return {'c':cr, 'w':wr, 'h':hr, 'cca':cav, 'cw':cwr, 'ch':chr}
-
-
-def load_q_data(anal_q_name:str, NX=2368, NY=2240):
-    """load q data
-
-    Argas:
-        anal_q_name (str): calculated q name 
-        image.shape h(row),w(col) = 2240(NY) x 2368(NX)
-        NX (int): image shape Width, default=2368
-        NY (int): image shape Hight, default=2240
-
-    Return:
-        dict: {'qx': qx, 'qy': qy, 'qz': qz, 'qxy': qxy, 'qxyz_ang': qxyz_ang}
-
-    Note:
-        qxy: np.hypot(qx,qy) -> np.sqrt(qx**2+qy**2) 
-        qxyz_ang: [deg] arctan(qxy/qz)
-
-    Example:
-        >>> anal_q_name = 'm4_p'
-        >>> q_data = load_q_data(anal_q_name='m4_p')
-        #  {'qx': qx, 'qy': qy, 'qz': qz, 'qxy': qxy, 'qxyz_ang': qxyz_ang}
-        
-        >>> plt.imshow(q_data['qx'], cmap="gist_rainbow_r")
-
-    """
-    qx_npy = f'{anal_q_name}_qx.npy'
-    qy_npy = f'{anal_q_name}_qy.npy'
-    qz_npy = f'{anal_q_name}_qz.npy'
-
-    qx = np.fromfile(qx_npy,dtype=np.float32).reshape(NX,NY)
-    qy = np.fromfile(qy_npy,dtype=np.float32).reshape(NX,NY)
-    qz = np.fromfile(qz_npy,dtype=np.float32).reshape(NX,NY)
-    
-    # hypot-> equal to sqrt(x1**2 + x2**2) 
-    qxy = np.hypot(qx, qy)
-
-    qxyz_ang = np.rad2deg(np.arctan(qxy/np.abs(qz)))
-
-    return {'qx':qx, 'qy':qy, 'qz':qz, 'qxy':qxy, 'qxyz_ang':qxyz_ang}
-
-
-def read_rotation_image(file_path):
-    """convert to tif file to .npy file
-
-    Args:
-        file_path (string oa pathlib): file path
-    """
-    p = Path(file_path)
-    I = Image.open(str(p))
-    data = np.array(I)
-    data.tofile(f'{p.stem}.npy')
-    
+  
 if __name__ == '__main__':
     pass
