@@ -112,4 +112,17 @@ Note: opencv version is need to over 4.4.
 
 Note: After this paper is accepted, the web address of this sorce cord is entered.
 
-https://github.com/s-yagyu/V-LBLP
+https://github.com/s-yagyu/ 
+
+#### Detailed manual
+
+[Analysis manual](https://github.com/s-yagyu/V-LBLP/blob/main/docs/Analysis_manual.md)
+
+[Image Editor manual](https://github.com/s-yagyu/V-LBLP/blob/main/docs/Image_editor_manual.md)
+
+[Analysis demo video ](https://github.com/s-yagyu/V-LBLP/blob/main/docs/V-LBLP.mp4)
+
+#### Sample dataset
+
+MDR
+
