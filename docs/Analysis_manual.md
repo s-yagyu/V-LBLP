@@ -326,7 +326,7 @@ Cases where Nan is input
 
 - hw method : (1)  $y_{max}-y_{min} < filter$ (Out of Wafer)
 
-- gaussian method :(1) $y_{max}-y_{min} < filter$ (Out of Wafer), (2) $y_{max} <y_{median} + PMAX$, (3) Fitting does not converge.
+- gaussian method :(1) $y_{max}-y_{min} < filter$ (Out of Wafer),  (2) $y_{max} < y_{median} + PMAX$,  (3) Fitting does not converge.
 
 
 
