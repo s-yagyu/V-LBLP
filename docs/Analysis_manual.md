@@ -133,7 +133,7 @@ src
 | |-Image_editor_manual.md
 |
 |-example_html							# example for analysis
-| |-ex_4inch_rc2rot_3phi_gauss.html # Results of the 4-inch analysis used in this paper
+| |-ex_4inch_rc2rot_3psi_gauss.html # Results of the 4-inch analysis used in this paper
 | |-ex_dd_d.html				 	# Calculation dd/d
 | |-ex_radius_average.html		 	# Calculate the average for the radial direction
 | |-ex_rc_filter.html			 	# Check RC and determine filter value
@@ -183,7 +183,7 @@ Data for each incident angle and data not irradiated with X-rays (dark data) are
 
 The angle file is a file that associates the incident angle information with the data file name. The Angle file is in csv format, and the column name of angel and filename is described on the 0th row, and the angle and file name are described on the 1st and subsequent rows. The angle unit is arcsec. The file extension is .txt.
 
-![holder](figs/folder.png)
+![holder](figs/folder.PNG)
 
 **Fig.2　Schematic diagram of experimental data folders and files**
 
