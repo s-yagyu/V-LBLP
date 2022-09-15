@@ -737,16 +737,22 @@ $\Delta\phi< 50 \times 10^{-6} =1\times 10^{-4}(rad)(=0.006deg)$
 ![set_angle90](figs/set_angle90.png)
 
 
+
 $$
 R(sin (\psi),cos (\psi),0, \Delta )\\
 \\
+
 R(0,1,0, \Delta \theta)\;at\;\psi=0\\
  \\
+ 
 R(\frac{\sqrt{3}}{2} ,-\frac{1}{2} , 0, \Delta \chi)\;at\;\psi=120
 \\
+
 R(-\frac{\sqrt{3}}{2} ,-\frac{1}{2} , 0, \Delta \chi)\;at\;\psi=-120
 \\
+
 R(1,0,0, \Delta \chi)\;at\;\psi=90
+
 $$
 
 
