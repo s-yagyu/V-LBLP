@@ -741,25 +741,20 @@ $\Delta\phi< 50 \times 10^{-6} =1\times 10^{-4}(rad)(=0.006deg)$
 $$
 R(sin (\psi),cos (\psi),0, \Delta )\\
 \\
-
 R(0,1,0, \Delta \theta)\;at\;\psi=0\\
  \\
- 
 R(\frac{\sqrt{3}}{2} ,-\frac{1}{2} , 0, \Delta \chi)\;at\;\psi=120
 \\
-
 R(-\frac{\sqrt{3}}{2} ,-\frac{1}{2} , 0, \Delta \chi)\;at\;\psi=-120
 \\
-
 R(1,0,0, \Delta \chi)\;at\;\psi=90
-
 $$
 
 
 
 
 $$
-\begin{pmatrix} q_{x}  \\ q_{y} \\q_{z} \end{pmatrix}=R\begin{pmatrix}\sin(\psi),cos(\psi), 0, \Delta\chi \end{pmatrix}R\begin{pmatrix}0, 1, 0, \Delta\theta \end{pmatrix}\begin{pmatrix} 0  \\ 0 \\q \end{pmatrix}
+\begin{pmatrix} q_{x}  \\ q_{y} \\\q_{z} \end{pmatrix}=R\begin{pmatrix}\sin(\psi),cos(\psi), 0, \Delta\chi \end{pmatrix}R\begin{pmatrix}0, 1, 0, \Delta\theta \end{pmatrix}\begin{pmatrix} 0  \\ 0 \\\q \end{pmatrix}
 $$
 
 
