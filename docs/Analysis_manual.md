@@ -183,7 +183,7 @@ Data for each incident angle and data not irradiated with X-rays (dark data) are
 
 The angle file is a file that associates the incident angle information with the data file name. The Angle file is in csv format, and the column name of angel and filename is described on the 0th row, and the angle and file name are described on the 1st and subsequent rows. The angle unit is arcsec. The file extension is .txt.
 
-![holder](figs/folder.png)
+![folder](figs/folder.png)
 
 **Fig.2　Schematic diagram of experimental data folders and files**
 
@@ -302,7 +302,7 @@ FWHM = 2 \times \sqrt{2  ln 2}\times \sigma　≒2.35\times \sigma
 $$
 The data output by the hw method (_w.tif, _w.npy) is recorded as σ (value obtained by dividing the obtained value by approximately 2.35) for comparison with the Gauss method. In the function that reads and visualizes this file, the result calculated by multiplying σ by 2.35 is returned to FWHM. (In detail, See docstring of the load_rc_tif (folder_name) function in re_analysis.py.)
 
-![RC](figs/rc.png )
+![rc](figs/rc.png )
 
 **Fig.3　Flow of RC analysis**
 
@@ -472,7 +472,7 @@ Fig.7 is a schematic diagram of the origin of the device and detector in our mea
 
 
 
-![sample_origin](figs/Origin1.PNG)
+![Origin1](figs/Origin1.PNG)
 
 **Fig.7　Schematic diagram of the origin of the device and detector in our measurement system and the resulting image**
 
@@ -482,7 +482,7 @@ Fig. 8 is a schematic diagram of the position of the sample placed on the sample
 
 
 
-![sample_setup](figs/Origin2.PNG)
+![Origin2](figs/Origin2.PNG)
 
 **Fig.8 Schematic diagram of the position of the sample placed on the sample table (upper side) with respect to the X-ray incident direction and the obtained image data (lower side) with the detector in our experimental setup.**
 
@@ -562,7 +562,7 @@ print(outfolderlist)
 
 The calculation of **h** is performed using the data from the combined image positions for the two orientations.
 
-![Qcal](figs/hcal.PNG)
+![hcal](figs/hcal.PNG)
 
 **Fig. 11 Flow of h calculation**
 
