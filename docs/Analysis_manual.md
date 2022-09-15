@@ -564,7 +564,7 @@ print(outfolderlist)
 
 The calculation of **h** is performed using the data from the combined image positions for the two orientations.
 
-![hcal](figs/hcal.PNG)
+![hcal](figs/hcal.png)
 
 **Fig. 11 Flow of h calculation**
 
@@ -756,9 +756,11 @@ $$
 \begin{pmatrix} q_{x}  \\ q_{y} \\q_{z} \end{pmatrix}=R\begin{pmatrix}\sin(\psi),cos(\psi), 0, \Delta\chi \end{pmatrix}R\begin{pmatrix}0, 1, 0, \Delta\theta \end{pmatrix}\begin{pmatrix} 0  \\ 0 \\q \end{pmatrix}
 $$
 
+
 $$
 R(u_{x},u_{y},u_{z},\alpha)=\begin{pmatrix} cos\alpha+u^{2}_{x}(1-cos\alpha) & u_{x}u_{y}(1-cos\alpha)-u_{z}sin\alpha & u_{x}u_{z}(1-cos\alpha)+u_{y}sin\alpha\\ u_{y}u_{x}(1-cos\alpha)+u_{z}sin\alpha & cos\alpha+u^{2}_{y}(1-cos\alpha) & u_{y}u_{z}(1-cos\alpha)-u_{x}sin\alpha\\u_{z}u_{x}(1-cos\alpha)-u_{y}sin\alpha & u_{z}u_{y}(1-cos\alpha)+u_{x}sin \alpha & cos\alpha+u^{2}_{z}(1-cos\alpha)\end{pmatrix}
 $$
+
 ---
 
 ##### How to run GUI image conversion software (image editing)
