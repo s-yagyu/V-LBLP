@@ -730,11 +730,11 @@ $\Delta\phi< 50 \times 10^{-6} =1\times 10^{-4}(rad)(=0.006deg)$
 ---
 ##### R matrix
 
-![set_angle120](figs/set_angle120.PNG)
+![set_angle120](figs/set_angle120.png)
 
 
 
-![set_angle90](figs/set_angle90.PNG)
+![set_angle90](figs/set_angle90.png)
 
 
 $$
