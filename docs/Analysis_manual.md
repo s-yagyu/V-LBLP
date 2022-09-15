@@ -759,7 +759,7 @@ $$
 
 
 $$
-R(u_{x},u_{y},u_{z},\alpha)=\begin{pmatrix} cos\alpha+u^2_{x}(1-cos\alpha) & u_{x}u_{y}(1-cos\alpha)-u_{z}sin\alpha & u_{x}u_{z}(1-cos\alpha)+u_{y}sin\alpha\ u_{y}u_{x}(1-cos\alpha)+u_{z}sin\alpha & cos\alpha+u^2_{y}(1-cos\alpha) & u_{y}u_{z}(1-cos\alpha)-u_{x}sin\alpha\u_{z}u_{x}(1-cos\alpha)-u_{y}sin\alpha & u_{z}u_{y}(1-cos\alpha)+u_{x}sin \alpha & cos\alpha+u^2_{z}(1-cos\alpha)\end{pmatrix}
+R(u_{x},u_{y},u_{z},\alpha)=\begin{pmatrix} cos\alpha+u^{2}_{x}(1-cos\alpha) & u_{x}u_{y}(1-cos\alpha)-u_{z}sin\alpha & u_{x}u_{z}(1-cos\alpha)+u_{y}sin\alpha \\ u_{y}u_{x}(1-cos\alpha)+u_{z}sin\alpha & cos\alpha+u^{2}_{y}(1-cos\alpha) & u_{y}u_{z}(1-cos\alpha)-u_{x}sin\alpha \\ u_{z}u_{x}(1-cos\alpha)-u_{y}sin\alpha & u_{z}u_{y}(1-cos\alpha)+u_{x}sin \alpha & cos\alpha+u^{2}_{z}(1-cos\alpha)\end{pmatrix}
 $$
 
 ---
