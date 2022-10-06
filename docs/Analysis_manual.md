@@ -12,7 +12,7 @@ This tool can be used to analyze and visualization of local bending of the latti
 
 The V-LBLP is a method of visualizing the minute "distortion" of the wafer crystal plane with the spatial resolution of the pixel size of the detector (50 micrometers in this device) on the entire surface of the wafer. 
 
-In the V-LBLP, the incident angle ($\theta$) of X-rays is changed to a minute (about ± 300 arcsec from the Bragg reflection position), and two-dimensional X-ray Rocking-Curve (RC) is acquired. This measurement is performed by changing the incident direction ($\psi $: two or more directions) of the wafer. The peak analysis of RC, which is a function of the angle, is performed for each image pixel, and the angle component h (q) of the surface of the crystal plane is calculated using the analysis values of each direction.
+In the V-LBLP, the incident angle ( $\theta$ ) of X-rays is changed to a minute (about ± 300 arcsec from the Bragg reflection position), and two-dimensional X-ray Rocking-Curve (RC) is acquired. This measurement is performed by changing the incident direction ( $\psi $: two or more directions ) of the wafer. The peak analysis of RC, which is a function of the angle, is performed for each image pixel, and the angle component h (q) of the surface of the crystal plane is calculated using the analysis values of each direction.
 
 The tool consists of the following three.
 
@@ -126,44 +126,44 @@ https://github.com/s-yagyu/V-LBLP
 Folder structure
 
 src
-|-docs							# document
+|-docs					# document
 | |-figs
 | |-Analysis_manual.md
 | |-Analysis_manual.pdf
 | |-Image_editor_manual.md
 |
-|-example_html							# example for analysis
+|-example_html				# example for analysis
 | |-ex_4inch_rc2rot_3psi_gauss.html # Results of the 4-inch analysis used in this paper
-| |-ex_dd_d.html				 	# Calculation dd/d
-| |-ex_radius_average.html		 	# Calculate the average for the radial direction
-| |-ex_rc_filter.html			 	# Check RC and determine filter value
+| |-ex_dd_d.html			# Calculation dd/d
+| |-ex_radius_average.html		# Calculate the average for the radial direction
+| |-ex_rc_filter.html			# Check RC and determine filter value
 |
-|-image_editor						# affine transform of data using GUI
+|-image_editor				# affine transform of data using GUI
 | |-...(abbreviation)
 | |-affine_transformation_parameters_editor_r.py # GUI for data rotation (New version)
 |
-|-qfit						# Main analysis module
+|-qfit					# Main analysis module
 | |-...(abbreviation)
-| |-file_folder_trans.py	# file and folder search, convert and  transfer
-| |-fit.py 					# RC calculation core Program
+| |-file_folder_trans.py		# file and folder search, convert and  transfer
+| |-fit.py 				# RC calculation core Program
 | |-fit_q.py 				# interface for jupyter (calling functions)
-| |-radial_average.py 		# for radial direction analysis
+| |-radial_average.py 			# for radial direction analysis
 | |-image_split.py 			# for image split analysis
 | |-image_treat.py 			# trimming and calling image editor
-| |-make_angle_file.py		# angle file core program
+| |-make_angle_file.py			# angle file core program
 | |-multiplot.py 			# for making figure
-| |-q2.py					# q calculation core program
+| |-q2.py				# q calculation core program
 | |-re_analysis.py 			# data load and main analytical tools
 | |-re_plot.py 				# plot parts
 | |-d_limit.py 				# delta d calculation program
 | |-data_check.py 			# RC check and determination of filter values
 |
-|-temp_anglefile.ipynb		# create Angle file template
-|-temp_rc2rot_2phi.ipynb	# Method A RC -> rot-> q for 2 directions template
-|-temp_rc2rot_3phi.ipynb	# Method A RC -> rot-> q for 3 directions template
-|-temp_rot2rc_2phi.ipynb	# Method B rot -> rc-> q for 2 directions template
-|-run_image_editor.ipynb	# image editor and trimming GUI program run template
-|-temp_rc_filter.ipynb		# Check RC and determine filter value
+|-temp_anglefile.ipynb			# create Angle file template
+|-temp_rc2rot_2phi.ipynb		# Method A RC -> rot-> q for 2 directions template
+|-temp_rc2rot_3phi.ipynb		# Method A RC -> rot-> q for 3 directions template
+|-temp_rot2rc_2phi.ipynb		# Method B rot -> rc-> q for 2 directions template
+|-run_image_editor.ipynb		# image editor and trimming GUI program run template
+|-temp_rc_filter.ipynb			# Check RC and determine filter value
 |-Readme.md
 ```
 
@@ -294,7 +294,7 @@ maf.anglefile_info(data_path=g_120)
 ---
 #### (2) RC analysis 
 
-Figure 3 shows the flow of RC curves and analysis. In RC analysis, an RC graph is created from a 2D image file of each angle, and the peak position ($\theta_{x, y}$),  peak intensity($h_{x, y}$)  and full width at half maximum (deviation) ($\sigma_{x, y}$) are analyzed by the gaussian fitting method or hw method (Full width half Maximum: FWHM).  The difference in peak angle is calculated by the difference between peak position and the average peak angle. The same processing is performed for the remaining directions.
+Figure 3 shows the flow of RC curves and analysis. In RC analysis, an RC graph is created from a 2D image file of each angle, and the peak position ( $\theta_{x, y}$ ),  peak intensity( $h_{x, y}$ )  and full width at half maximum (deviation) ( $\sigma_{x, y}$ ) are analyzed by the gaussian fitting method or hw method (Full width half Maximum: FWHM).  The difference in peak angle is calculated by the difference between peak position and the average peak angle. The same processing is performed for the remaining directions.
 $$
 \Delta\theta_{x,y}= \theta_{x,y}-\theta_{ave}\\\theta_{ave}=\sum_{x}^{n} \sum_{y}^{m}\frac{\theta_{x,y}}{n\times m}
 $$
@@ -312,7 +312,7 @@ The data output by the hw method (_w.tif, _w.npy) is recorded as σ (value obtai
 
 **Fig 4. An example of  RC curves at each  point** 
 
-Figure 4 shows An example of  RC curves at each  point. Outside the area of the wafer is the noise level. In the edge region, a broad distribution can also be seen. In RC analysis, the filter parameter is set to exclude the outside of the wafer area from the analysis target. If the difference between the maximum value ($ y_ {max} $) and the minimum value ($ y_ {min} $) of the RC intensity is smaller than the filter value, it is regarded as noise and excluded from the analysis target. The value of Nan is input to the analysis value so as not to affect the calculation of the average value.
+Figure 4 shows An example of  RC curves at each  point. Outside the area of the wafer is the noise level. In the edge region, a broad distribution can also be seen. In RC analysis, the filter parameter is set to exclude the outside of the wafer area from the analysis target. If the difference between the maximum value ( $ y_ {max} $ ) and the minimum value ( $ y_ {min} $ ) of the RC intensity is smaller than the filter value, it is regarded as noise and excluded from the analysis target. The value of Nan is input to the analysis value so as not to affect the calculation of the average value.
 
 Conditions to be analyzed
 $$
@@ -322,7 +322,7 @@ The gaussian fitting method also sets PMAX.
 $$
 y_ {max}> y_ {median} + PMAX
 $$
-In addition to the filter condition, if the maximum value of RC intensity ($ y_ {max} $) is smaller than the median value ($ y_ {median} $) + PMAX, it is excluded from the analysis target and Nan is input. Under this condition, an extremely broad distribution can be removed. In addition, Nan is input even when Fitting does not converge. (Extremely broad peaks often do not converge even if they are not removed under these conditions)
+In addition to the filter condition, if the maximum value of RC intensity ( $ y_ {max} $ ) is smaller than the median value ( $ y_ {median} $ ) + PMAX, it is excluded from the analysis target and Nan is input. Under this condition, an extremely broad distribution can be removed. In addition, Nan is input even when Fitting does not converge. (Extremely broad peaks often do not converge even if they are not removed under these conditions)
 
 Cases where Nan is input
 
@@ -693,7 +693,7 @@ $qx,qy,qz$ convert to polar coordinate. $q_\theta$ indicates the inclination fro
 
 - wavelenght: 0.1- 0.25nm monochromatic and parallel
 
-- Spread: $\Delta \lambda /\lambda_{ave} < 10^{-4}$, ($\lambda_{ave}$ : center wavelength of the X-ray)
+- Spread: $\Delta \lambda /\lambda_{ave} < 10^{-4}$, ( $\lambda_{ave}$ : center wavelength of the X-ray )
 
 - Spread angle:  within 30 arcsec
 
@@ -912,7 +912,7 @@ python q2.py -t XXX(THETA).npy -c YYY(CAI).npy
 
 ##### Review
 
-[6] ”Characterization of Defects and Deep Levels for GaN Power Devices”Editors Tetsuo Narita and Tetsu Kachi, Chapter 6 Local Lattice Plane Orientation Mapping of Entire GaN Wafer
+[6] "Characterization of Defects and Deep Levels for GaN Power Devices" Editors Tetsuo Narita and Tetsu Kachi, Chapter 6 Local Lattice Plane Orientation Mapping of Entire GaN Wafer
 Authors Osami Sakata and Jaemyung Kim
 https://doi.org/10.1063/9780735422698_006
 Pages: 6-1–6-12
