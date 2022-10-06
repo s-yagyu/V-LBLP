@@ -295,13 +295,17 @@ maf.anglefile_info(data_path=g_120)
 #### (2) RC analysis 
 
 Figure 3 shows the flow of RC curves and analysis. In RC analysis, an RC graph is created from a 2D image file of each angle, and the peak position ( $\theta_{x, y}$ ),  peak intensity( $h_{x, y}$ )  and full width at half maximum (deviation) ( $\sigma_{x, y}$ ) are analyzed by the gaussian fitting method or hw method (Full width half Maximum: FWHM).  The difference in peak angle is calculated by the difference between peak position and the average peak angle. The same processing is performed for the remaining directions.
+
 $$
 \Delta\theta_{x,y}= \theta_{x,y}-\theta_{ave}\\\theta_{ave}=\sum_{x}^{n} \sum_{y}^{m}\frac{\theta_{x,y}}{n\times m}
 $$
-In gaussian fitting, the standard deviation ($\sigma$) is obtained from the width of the distribution. The standard deviation and the full width at half maximum (FWHM) have the following relationship.
+
+In gaussian fitting, the standard deviation ( $ \sigma$ ) is obtained from the width of the distribution. The standard deviation and the full width at half maximum (FWHM) have the following relationship.
+
 $$
 FWHM = 2 \times \sqrt{2  ln 2}\times \sigma　≒2.35\times \sigma
 $$
+
 The data output by the hw method (_w.tif, _w.npy) is recorded as σ (value obtained by dividing the obtained value by approximately 2.35) for comparison with the Gauss method. In the function that reads and visualizes this file, the result calculated by multiplying σ by 2.35 is returned to FWHM. (In detail, See docstring of the load_rc_tif (folder_name) function in re_analysis.py.)
 
 ![rc](figs/rc.png )
