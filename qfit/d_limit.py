@@ -25,7 +25,7 @@ __license__ = "BSD-3-Clause"
 __copyright__ = "National Institute for Materials Science, Japan"
 __date__ = "2022/09/02"
 __version__= "1.0.0"
-__revised__ = "2022/09/02"
+__revised__ = "2023/01/15"
 
 from pathlib import Path
 import re
@@ -137,7 +137,7 @@ def dd_calc_4plot(data, title='$\Delta$ d/d at $\psi=0$', dd_xange=(0,2.5e-4),
                                          # title=f'd ($\AA$) GaN(112¯4) {d}[$\AA$]'
     ax2, im2, cax2 = replt.plot_imshow_ax(plot_data=dd_d, axi=ax[1,0],v_range=dd_xange, 
                                           title=f'$\Delta$d/d',pixel_size=pixel_size)
-    ax3 = replt.plot_hist_ax(dd_d, axi=ax[1,1], x_range=dd_xange, bins_=100, density=True, 
+    ax3 = replt.plot_hist_ax(dd_d, axi=ax[1,1], x_range=dd_xange, bins_=100, density=False, 
                              title='$\Delta$d/d histgram', xlabel="$\Delta$d/d",quantail=1)
     ax3.axvline(x=limt_res, color='blue')
     ax3_y_ticks = ax3.get_yticks()
@@ -233,17 +233,17 @@ def dpsi_calc_4plot(data, title='$\Delta \Psi$', dp_xange=(0,2.5e-4),
     
     # ax1, im1, cax1 = replt.plot_imshow_ax(plot_data=dpsi_hv, axi=ax[0,1],  v_range=dd_xange, title=f'ΔA/A',pixel_size=pixel_size)
     # ax[0,1].axis("off")
-    ax1 = replt.plot_hist_ax(plot_data=data['ct'], axi=ax[0,1], x_range=(0,0), bins_=100, density=True, 
+    ax1 = replt.plot_hist_ax(plot_data=data['ct'], axi=ax[0,1], x_range=(0,0), bins_=100, density=False, 
                              title='$\Delta\\theta$ histgram', xlabel='$\Delta\\theta$ ($^{\circ}$)', quantail=0.9999) 
     
     # Vertical ΔAngle 
     ax2, im2, cax2 = replt.plot_imshow_ax(plot_data=dpsi_v, axi=ax[1,0],v_range=dp_xange, 
                                           title='$\Delta\Psi$ ($^{\circ}$)',pixel_size=pixel_size)
-    ax3 = replt.plot_hist_ax(dpsi_v, axi=ax[1,1], x_range=dp_xange, bins_=100, density=True, 
+    ax3 = replt.plot_hist_ax(dpsi_v, axi=ax[1,1], x_range=dp_xange, bins_=100, density=False, 
                              title='$\Delta\Psi$ histgram', xlabel="$\Delta\psi$ ($^{\circ}$)",quantail=1)
     
     # ax4, im4, cax4 = replt.plot_imshow_ax(plot_data=dpsi_h, axi=ax[2,0],v_range=dd_xange, title=f'Horizontal ΔAngle',pixel_size=pixel_size)
-    # ax5 = replt.plot_hist_ax(dpsi_h, axi=ax[2,1], x_range=dd_xange, bins_=100, density=True, title='Horizontal ΔAngle Histgram', xlabel="Horizontal ΔA/A [deg]",quantail=1)
+    # ax5 = replt.plot_hist_ax(dpsi_h, axi=ax[2,1], x_range=dd_xange, bins_=100, density=False, title='Horizontal ΔAngle Histgram', xlabel="Horizontal ΔA/A [deg]",quantail=1)
     
      # ax3.xaxis.set_major_formatter(ScalarFormatter(useMathText=True))
     ax3.ticklabel_format(style="sci", axis="x",scilimits=(0,0))
@@ -333,7 +333,7 @@ def limt_calc_4plot(data, title='Limit $\Delta$d/d $\cdot$ $\Delta\Psi$',
     
     ax0, im0, cax0 = replt.plot_imshow_ax(plot_data=dd_d, axi=ax[0,0],v_range=dd_xange, 
                                           title=f'$\Delta$d/d',pixel_size=pixel_size)
-    ax1 = replt.plot_hist_ax(dd_d, axi=ax[0,1], x_range=dd_xange, bins_=100, density=True, 
+    ax1 = replt.plot_hist_ax(dd_d, axi=ax[0,1], x_range=dd_xange, bins_=100, density=False, 
                              title='$\Delta$d/d histgram', xlabel="$\Delta$d/d",quantail=1)
     ax1.axvline(x=limt_res, color='blue')
     ax1_y_ticks = ax1.get_yticks()
@@ -344,7 +344,7 @@ def limt_calc_4plot(data, title='Limit $\Delta$d/d $\cdot$ $\Delta\Psi$',
      # Vertical ΔAngle 
     ax2, im2, cax2 = replt.plot_imshow_ax(plot_data=dpsi_v, axi=ax[1,0],v_range=dp_xange, 
                                           title='$\Delta\Psi$ ($^{\circ}$)',pixel_size=pixel_size)
-    ax3 = replt.plot_hist_ax(dpsi_v, axi=ax[1,1], x_range=dp_xange, bins_=100, density=True, 
+    ax3 = replt.plot_hist_ax(dpsi_v, axi=ax[1,1], x_range=dp_xange, bins_=100, density=False, 
                              title='$\Delta\Psi$ histgram', xlabel="$\Delta\psi$ ($^{\circ}$)",quantail=1)
     # ax3.xaxis.set_major_formatter(ScalarFormatter(useMathText=True))
     ax3.ticklabel_format(style="sci", axis="x",scilimits=(0,0))

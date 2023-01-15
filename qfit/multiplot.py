@@ -7,7 +7,7 @@ __license__ = "BSD-3-Clause"
 __copyright__ = "National Institute for Materials Science, Japan"
 __date__ = "2022/09/02"
 __version__= "1.0.0"
-__revised__ = "2022/09/02"
+__revised__ = "2023/01/15"
 
 from pathlib import Path
 from PIL import Image
@@ -118,7 +118,7 @@ def rc_12plots(read_rc_data, data_range=None, peak_range =(0,0),width_range =(0,
                                         title='Peak angle difference (deg)',pixel_size=pixel_size)
 
     ax3 = replt.plot_hist_ax(plot_data=read_rc_data['ct'], axi=ax_list[3], data_range=data_range, 
-                             x_range=peak_range,bins_=100,density=True, xlabel='Peak difference(deg)', quantail=0.9999) 
+                             x_range=peak_range,bins_=100,density=False, xlabel='Peak difference(deg)', quantail=0.9999) 
 
     ax4, im4, cax4 = replt.plot_imshow_ax(plot_data=read_rc_data['w'], axi=ax_list[4], 
                                     data_range=data_range, v_range=(0,0),title='FWHM (arcsec)', pixel_size=pixel_size)
@@ -128,21 +128,21 @@ def rc_12plots(read_rc_data, data_range=None, peak_range =(0,0),width_range =(0,
                                     row_num=row_num, title='FWHM (deg)') 
 
     ax7 = replt.plot_hist_ax(plot_data=read_rc_data['wt'], axi=ax_list[7], data_range=data_range, 
-                            x_range=width_range, bins_=100,density=True, xlabel='FWHM (deg)',quantail=1)
+                            x_range=width_range, bins_=100,density=False, xlabel='FWHM (deg)',quantail=1)
                         
     ax8, im8, cax8 = replt.plot_imshow_ax(plot_data=read_rc_data['h'], axi=ax_list[8], 
                                     data_range=data_range, v_range=height_range, 
                                     title='Height',pixel_size=pixel_size) 
 
     ax9 = replt.plot_hist_ax(plot_data=read_rc_data['h'], axi=ax_list[9], data_range=data_range, 
-                            x_range=height_range,bins_=100,density=True,xlabel='Height', quantail=0.99) 
+                            x_range=height_range,bins_=100,density=False,xlabel='Height', quantail=0.99) 
 
     ax10, im10, cax10 = replt.plot_imshow_ax(plot_data=read_rc_data['ht'], axi=ax_list[10], 
                                         data_range=data_range, v_range=(0,0),
                                         title='Nomalized Height difference',pixel_size=pixel_size) 
 
     ax11 = replt.plot_hist_ax(plot_data=read_rc_data['ht'], axi=ax_list[11], data_range=data_range, 
-                            x_range=(0,0), bins_=100, density=True,
+                            x_range=(0,0), bins_=100, density=False,
                             xlabel='Nomalized Height difference', quantail=0.99) 
     
     fig.colorbar(im0,ax=ax0,cax=cax0)
@@ -202,7 +202,7 @@ def rc_2plots(read_rc_data, data_range=None, peak_range=(0,0),width_range=(0,0),
                                         title='$\Delta\\theta$ ($^{\circ}$)',pixel_size=pixel_size)
     
     ax1 = replt.plot_hist_ax(plot_data=read_rc_data['ct'], axi=ax_list[1], data_range=data_range, x_range=peak_range,
-                            bins_=100,density=True, xlabel='$\Delta\\theta$ ($^{\circ}$)',
+                            bins_=100,density=False, xlabel='$\Delta\\theta$ ($^{\circ}$)',
                             title='$\Delta\\theta$ histgram', quantail=0.9999)
     
     ax2, im2, cax2 = replt.plot_imshow_ax(plot_data=read_rc_data['wt'], axi=ax_list[2], 
@@ -212,7 +212,7 @@ def rc_2plots(read_rc_data, data_range=None, peak_range=(0,0),width_range=(0,0),
     
     ax3 = replt.plot_hist_ax(plot_data=read_rc_data['wt'], axi=ax_list[3], data_range=data_range, 
                              x_range=width_range,
-                             bins_=100,density=True,xlabel='FWHM ($^{\circ}$)',
+                             bins_=100,density=False,xlabel='FWHM ($^{\circ}$)',
                              title='FWHM histgram', quantail=0.999)
     
      
@@ -332,13 +332,13 @@ def qcp_12plots(q_dict, title='qxyz qr$\\theta$$\phi$', step=200, save=False, dp
                                         title='$q_x$',pixel_size=pixel_size)
 
     ax1 = replt.plot_hist_ax(plot_data=q_dict['x'],axi=ax_list[1], x_range=(0,0), 
-                            bins_=100, density=True, xlabel='$q_x$',title='$q_x$ histgram')
+                            bins_=100, density=False, xlabel='$q_x$',title='$q_x$ histgram')
     
     ax2, im2, cax2 = replt.plot_imshow_ax(plot_data=q_dict['y'],axi=ax_list[2], v_range=(0,0), 
                                         title='qy',pixel_size=pixel_size)
 
     ax3 = replt.plot_hist_ax(plot_data=q_dict['y'],axi=ax_list[3], x_range=(0,0), 
-                        bins_=100, density=True, xlabel='$q_y$',title='$q_y$ histgram')
+                        bins_=100, density=False, xlabel='$q_y$',title='$q_y$ histgram')
     
     ax4, im4, cax4 = replt.plot_imshow_ax(plot_data=q_dict['z'],axi=ax_list[4], v_range=(0,0), 
                                         title='$q_z$',pixel_size=pixel_size)
@@ -350,20 +350,20 @@ def qcp_12plots(q_dict, title='qxyz qr$\\theta$$\phi$', step=200, save=False, dp
                                         title='$q_{\\theta}$ ($^{\circ}$)',pixel_size=pixel_size)
 
     ax7 = replt.plot_hist_ax(plot_data=q_dict['ang'],axi=ax_list[7], x_range=(0,0.3), bins_=100, 
-                            density=True, xlabel='$q_{\\theta}$ ($^{\circ}$)',title='$q_{\\theta}$ histgram')
+                            density=False, xlabel='$q_{\\theta}$ ($^{\circ}$)',title='$q_{\\theta}$ histgram')
     
     xr,yr = rean.getXY(1, q_dict['angxy'], deg_or_rad='deg')
     ax8, im8, cax8 = replt.plot_quiver2d_ax(xr,yr,q_dict['angxy'], axi=ax_list[8], step=step, 
                                                 title='$q_{\phi}$ with arrow ($^{\circ}$)',pixel_size=pixel_size)
 
     ax9 = replt.plot_hist_ax(plot_data=q_dict['angxy'],axi=ax_list[9], x_range=(-180,180), 
-                            bins_=100, density=True, xlabel='$q_{\phi}$ ($^{\circ}$)',title='$q_{\phi}$ histgram')
+                            bins_=100, density=False, xlabel='$q_{\phi}$ ($^{\circ}$)',title='$q_{\phi}$ histgram')
     
     ax10, im10, cax10 = replt.plot_imshow_ax(plot_data=q_dict['xy'],axi=ax_list[10], v_range=(0,0), 
                                             title='$q_{xy}$',pixel_size=pixel_size)
     
     ax11 = replt.plot_hist_ax(plot_data=q_dict['xy'],axi=ax_list[11], x_range=(0,0), 
-                              bins_=100, density=True, xlabel='$q_{xy}$',title='$q_{xy}$ histgram')
+                              bins_=100, density=False, xlabel='$q_{xy}$',title='$q_{xy}$ histgram')
     
 
     
@@ -412,23 +412,23 @@ def qc_4plots(q_dict, title='q$_x$, q$_y$', step=200, qx_range=(0,0), qy_range=(
         for j in range(ncol):
             ax_list.append(ax[i,j])
     
-    ax0, im0, cax0 = replt.plot_imshow_ax(plot_data=q_dict['x'],axi=ax_list[0], v_range=(0,0), 
+    ax0, im0, cax0 = replt.plot_imshow_ax(plot_data=q_dict['x'],axi=ax_list[0], v_range=qx_range, 
                                         title='$q_x$',pixel_size=pixel_size)
 
     ax1 = replt.plot_hist_ax(plot_data=q_dict['x'],axi=ax_list[1], x_range=qx_range, 
-                            bins_=100, density=True, xlabel='$q_x$',title='$q_x$ histgram')
+                            bins_=100, density=False, xlabel='$q_x$',title='$q_x$ histgram')
     
-    ax2, im2, cax2 = replt.plot_imshow_ax(plot_data=q_dict['y'],axi=ax_list[2], v_range=(0,0), 
+    ax2, im2, cax2 = replt.plot_imshow_ax(plot_data=q_dict['y'],axi=ax_list[2], v_range=qy_range, 
                                         title='$q_y$',pixel_size=pixel_size)
 
     ax3 = replt.plot_hist_ax(plot_data=q_dict['y'],axi=ax_list[3], x_range=qy_range, 
-                        bins_=100, density=True, xlabel='$q_y$',title='$q_y$ histgram')
+                        bins_=100, density=False, xlabel='$q_y$',title='$q_y$ histgram')
     
     # ax4, im4, cax4 = replt.plot_imshow_ax(plot_data=q_dict['z'],axi=ax_list[4], v_range=(0,0), 
     #                                     title='qz',pixel_size=pixel_size)
     
     # ax5 = replt.plot_hist_ax(plot_data=q_dict['z'],axi=ax_list[5], x_range=(0,0), 
-    #                     bins_=100, density=True, xlabel='qz',title='qz histgram')
+    #                     bins_=100, density=False, xlabel='qz',title='qz histgram')
     # ax_list[5].axis("off")
     
     fig.colorbar(im0,ax=ax0,cax=cax0)
@@ -476,13 +476,13 @@ def qp_4plots(q_dict, title='q polar', ang_range=(0,0.25),save=False, dpi=DPI, e
                                         title='$q_{\phi}$ ($^{\circ}$)',pixel_size=pixel_size)
 
     ax1 = replt.plot_hist_ax(plot_data=q_dict['angxy'],axi=ax_list[1], x_range=(-180,180), 
-                            bins_=100, density=True, xlabel='$q_{\phi}$ ($^{\circ}$)',title='$q_{\phi}$ histgram')
+                            bins_=100, density=False, xlabel='$q_{\phi}$ ($^{\circ}$)',title='$q_{\phi}$ histgram')
 
     ax2, im2, cax2 = replt.plot_imshow_ax(plot_data=q_dict['ang'],axi=ax_list[2], v_range=ang_range, 
                                         title='$q_{\\theta}$ ($^{\circ}$)',pixel_size=pixel_size)
 
     ax3 = replt.plot_hist_ax(plot_data=q_dict['ang'],axi=ax_list[3], x_range=ang_range, 
-                            bins_=100, density=True, xlabel='$q_{\\theta}$ ($^{\circ}$)',title='$q_{\\theta}$ histgram')
+                            bins_=100, density=False, xlabel='$q_{\\theta}$ ($^{\circ}$)',title='$q_{\\theta}$ histgram')
     
     fig.colorbar(im0,ax=ax0,cax=cax0)
     fig.colorbar(im2,ax=ax2,cax=cax2)
@@ -528,7 +528,7 @@ def qp3_4plots(q_dict, title='$q_r$$q_{\theta}$$q_{\phi}$',ang_range=(0,0.25), s
                                         title='$q_{\\theta}$ ($^{\circ}$)',pixel_size=pixel_size)
 
     ax1 = replt.plot_hist_ax(plot_data=q_dict['ang'],axi=ax_list[1], x_range=ang_range, bins_=100, 
-                            density=True, xlabel='$q_{\\theta}$ ($^{\circ}$)',title='$q_{\\theta}$ histgram')
+                            density=False, xlabel='$q_{\\theta}$ ($^{\circ}$)',title='$q_{\\theta}$ histgram')
     
     
     xr,yr = rean.getXY(1, q_dict['angxy'], deg_or_rad='deg')
@@ -675,7 +675,8 @@ def image_hist_fig(plt_data, data_range=None, img_range=(0,0), imgtitle='', h_ra
     ax2 = fig.add_subplot(122) 
 
     _, im, cax = replt.plot_imshow_ax(plot_data=plt_data, axi=ax1, data_range=data_range,v_range=img_range, title=imgtitle)
-    _ = replt.plot_hist_ax(plot_data=plt_data, axi=ax2, data_range=data_range, x_range=h_range,bins_=100,density=True,xlabel=h_xlabel)
+    _ = replt.plot_hist_ax(plot_data=plt_data, axi=ax2, data_range=data_range, x_range=h_range,bins_=100,
+                           density=False,xlabel=h_xlabel)
     
     fig.colorbar(im, cax=cax)
     plt.tight_layout()
@@ -764,7 +765,7 @@ def q_12plots(q_dict, title='', data_range=None, step=50, hist_x_range=(0,0.2), 
 
     # title=r'$cos\theta = \left(\frac{\vec{qxy}\cdot\vec{ux}}{\|qxy\|\|ux\|}\right)$'
     ax5 = replt.plot_hist_ax(plot_data=qcx, axi=ax_list[5], data_range=data_range, x_range=(-1.1,1.1),
-                        bins_=100,density=True,title='x cos value histgram', xlabel='x cos value')
+                        bins_=100,density=False,title='x cos value histgram', xlabel='x cos value')
 
     ax6, im6, cax6 = replt.plot_imshow_ax(plot_data=qcxsig, axi=ax_list[6], 
                                          data_range=data_range, v_range=(-1.1,1.1), title='x sign',)                                
@@ -777,13 +778,13 @@ def q_12plots(q_dict, title='', data_range=None, step=50, hist_x_range=(0,0.2), 
                                          title='y cos value', )
 
     ax9 = replt.plot_hist_ax(plot_data=qcy, axi=ax_list[9], data_range=data_range, x_range=(-1.1,1.1),
-                           bins_=100, density=True, title='y cos value histgram', xlabel='y cos value')
+                           bins_=100, density=False, title='y cos value histgram', xlabel='y cos value')
 
     ax10, im10, cax10 = replt.plot_imshow_ax(plot_data=qcysig, axi=ax_list[10], 
                                          data_range=data_range, v_range=(-1.1,1.1), title='y sign')                                       
 
     ax11 = replt.plot_hist_ax(plot_data=qxyz_ang, axi=ax_list[11], data_range=data_range, x_range=hist_x_range,
-                           bins_=100, density=True, title='Tilting angle histgram',xlabel='Relative tilting angle [deg]')
+                           bins_=100, density=False, title='Tilting angle histgram',xlabel='Relative tilting angle [deg]')
     
     
     fig.colorbar(im0,ax=ax0,cax=cax0)
@@ -848,20 +849,20 @@ def q_12xyplots(q_dict, title='',data_range=None, row_num=None, col_num=None, sa
                                             data_range=data_range, v_range=(0,0), title='qx', 
                                             row_num=row_num, col_num=col_num)
     ax3 = replt.plot_hist_ax(plot_data=q_dict['x'], axi=ax_list[3], data_range=data_range, x_range=(0,0),
-                        bins_=100,density=True,xlabel='qx')
+                        bins_=100,density=False,xlabel='qx')
     
     ax4, ax5, ax6, im4, cax4 = replt.plot_xyline_ax(plot_data=q_dict['y'], axi=ax_list[4:7], 
                                             data_range=data_range, v_range=(0,0), title='qy', 
                                             row_num=row_num, col_num=col_num)
     ax7 = replt.plot_hist_ax(plot_data=q_dict['y'], axi=ax_list[7], data_range=data_range, x_range=(0,0),
-                        bins_=100,density=True,xlabel='qy')
+                        bins_=100,density=False,xlabel='qy')
     
     ax8, ax9, ax10, im8, cax8 = replt.plot_xyline_ax(plot_data=qxy, axi=ax_list[8:11], 
                                             data_range=data_range, v_range=(0,0), title='|qxy|', 
                                             row_num=row_num, col_num=col_num)
     
     ax11 = replt.plot_hist_ax(plot_data=qxy, axi=ax_list[11], data_range=data_range, x_range=(0,0),
-                        bins_=100,density=True,xlabel='|qxy|')
+                        bins_=100,density=False,xlabel='|qxy|')
     
     
     fig.colorbar(im0,ax=ax0,cax=cax0)
@@ -916,7 +917,7 @@ def q_3plots(q_dict, title='', data_range=None, step=50, hist_x_range=(0,0.2), s
     ax1 = replt.plot_quiver_ax(qx_data=q_dict['x'], qy_data=q_dict['y'], axi=ax_list[1], step=step, title='Distortion direction')
     
     ax2 = replt.plot_hist_ax(plot_data=qxyz_ang, axi=ax_list[2], data_range=data_range, x_range=hist_x_range,
-                           bins_=100, density=True, title='Tilting angle histgram', xlabel='Relative tilting angle [deg]')
+                           bins_=100, density=False, title='Tilting angle histgram', xlabel='Relative tilting angle [deg]')
     
     
     fig.colorbar(im0,ax=ax0,cax=cax0)

@@ -6,10 +6,10 @@ __license__ = "BSD-3-Clause"
 __copyright__ = "National Institute for Materials Science, Japan"
 __date__ = "2022/09/02"
 __version__= "1.0.0"
-__revised__ = "2022/09/02"
+__revised__ = "2023/01/15"
 
 from pathlib import Path
-from turtle import color
+# from turtle import color
 from PIL import Image
 
 import numpy as np
@@ -517,7 +517,7 @@ def plot_3d_ax(qxy_data, axi=None, title='3d', pixel_size=PIX_SIZE, elev=45, azi
         return ax_
  
 def plot_hist_ax(plot_data, axi=None, data_range=None, x_range=(0,0.15), bins_=100, density=False,
-                title='Histgram', xlabel="Relative tilting angle [deg]", ylabel="Probability", 
+                title='Histgram', xlabel="Relative tilting angle [deg]",  
                 color='Red', quantail=1.0):
     """histgram plot
 
@@ -531,7 +531,6 @@ def plot_hist_ax(plot_data, axi=None, data_range=None, x_range=(0,0.15), bins_=1
         density (bool, optional): Normalize. all count is 1. Defaults to False.
         title (str, optional): title. Defaults to 'Histgram'.
         xlabel (str, optional): x label. Defaults to "Relative tilting angle [deg]".
-        ylabel (str, optional): y label. Defaults to "Probability".
         color (str, optional): color. Defaults to 'Red'.
         quantail (float, opttional): remove high value.  range 0.5 (median) to 1.0 Defaults to 1.0
         
@@ -540,8 +539,16 @@ def plot_hist_ax(plot_data, axi=None, data_range=None, x_range=(0,0.15), bins_=1
         axi  = None -> None 
 
     Ref:
-        matplotlib:histgram normedの挙動
-        https://qiita.com/ponnhide/items/571e896915306f42c0c1
+        [Make histogram vertical axis relative frequency (sum of column heights = 1) or 
+        relative frequency density (entire histogram area = 1) in matplotlib]
+        (https://qiita.com/kanedaq/items/1e7a0e52363224c08980)
+        
+        Frequency (default)
+        Relative Frequency
+            -> Relative frequency = frequency in the class/total frequency
+         Density (relative frequency density)
+            -> Relative frequency density (hist(density=True)) = relative frequency / class width
+         frequency density = frequency / class width
         
     """
     
@@ -574,22 +581,26 @@ def plot_hist_ax(plot_data, axi=None, data_range=None, x_range=(0,0.15), bins_=1
     else:
         ax_ = axi
     
+    weights = np.ones_like(xyzdata) / len(xyzdata)
+
     if x_range == (0,0):
-        if density:
-            weights = np.ones_like(xyzdata) / len(xyzdata)
-            ax_.hist(xyzdata, bins=bins_, density=False, weights=weights,color=color)
+        if density: 
+            ax_.hist(xyzdata, bins=bins_, density=True, color=color)
+            ylabel = 'Density'
         else:
-            ax_.hist(xyzdata, bins=bins_, density=density, color=color)
+            ax_.hist(xyzdata, bins=bins_, density=False, weights=weights, color=color)
+            ylabel = 'Relative Frequency'
     else:
         if density:
-            weights = np.ones_like(xyzdata) / len(xyzdata)
-            ax_.hist(xyzdata, range=x_range, bins=bins_, density=False, weights=weights,color=color)
+            ax_.hist(xyzdata, range=x_range, bins=bins_, density=True, color=color)
+            ylabel = 'Density'
             ax_.set_xlim(*x_range)
         else:
-            ax_.hist(xyzdata, range=x_range, bins=bins_, density=density, color=color)
+            ax_.hist(xyzdata, range=x_range, bins=bins_, density=False, weights=weights, color=color)
+            ylabel = 'Relative Frequency'
             ax_.set_xlim(*x_range)
-
     
+        
     ax_.set_ylabel(ylabel)
     ax_.set_xlabel(xlabel) 
     ax_.set_title(title)
