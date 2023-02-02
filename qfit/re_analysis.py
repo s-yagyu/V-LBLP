@@ -9,8 +9,8 @@ __author__ = "Shinjiro Yagyu"
 __license__ = "BSD-3-Clause"
 __copyright__ = "National Institute for Materials Science, Japan"
 __date__ = "2022/09/02"
-__version__= "1.0.0"
-__revised__ = "2022/09/02"
+__version__= "2.0.0"
+__revised__ = "2023/02/02"
 
 from pathlib import Path
 
@@ -22,10 +22,11 @@ from qfit import file_folder_trans as fft
 
 
 def load_rc_tif(file_path):
-    """load rc data
+    """load rc  tif data
     
     Args:
-        file_path (str): Folder name containing the .npy and .tif files
+        file_path (str):  Name of the folder where .npy and .tif files are stored.
+        In Load, only Tif files are used.
 
     Returns:
         dict:  {'c':peak[arcsec], 'h':height, 'w':width[arcsec], 'ct':peak-ave[deg], 'ht':normalize, 'wt':width[deg]}
@@ -139,13 +140,13 @@ def average_3q(q0p,q0m,qpm):
     
     return {'x':qtx, 'y':qty, 'z':qtz, 'xy':qtxy, 'ang':qt_ang, 'angxy':qt_angxy, 'r':qt_r}
 
-def difference_2q(qbf,qaf,flag='minus'):
+def difference_2q(qaf,qbf,flag='minus'):
     """ difference of q calculations
 
     Args:
         qbf  (dict): load q data
         qaf  (dict): load q data
-        flag (str, optional):'minus'=qaf-qdf, 'div'=qaf/qbf, 'ave'=(qaf+qdf)/2.
+        flag (str, optional):'minus'=qaf-qdf, 'div'=qbf/qaf, 'ave'=(qaf+qdf)/2.
             Defaults to 'minus'.
 
     Returns:
@@ -168,9 +169,9 @@ def difference_2q(qbf,qaf,flag='minus'):
 
 
     elif flag== 'div':
-        qtx = qaf['x'] /qbf['x']
-        qty = qaf['y'] /qbf['y']
-        qtz = qaf['z'] /qbf['z']
+        qtx = qbf['x'] /qaf['x']
+        qty = qbf['y'] /qaf['y']
+        qtz = qbf['z'] /qaf['z']
 
         qtxy = np.hypot(qtx, qty)
         qt_ang = np.rad2deg(np.arctan(qtxy/qtz))

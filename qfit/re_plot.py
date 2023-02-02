@@ -5,11 +5,11 @@ __author__ = "Shinjiro Yagyu"
 __license__ = "BSD-3-Clause"
 __copyright__ = "National Institute for Materials Science, Japan"
 __date__ = "2022/09/02"
-__version__= "1.0.0"
+__version__= "2.0.0"
 __revised__ = "2023/01/15"
 
+
 from pathlib import Path
-# from turtle import color
 from PIL import Image
 
 import numpy as np
@@ -158,7 +158,7 @@ def plot_line_ax(plot_data, axi=None, data_range=None, v_range=(0,0), row_num=12
         sty, edy = data_range[2], data_range[3] 
         select_data = plot_data[sty:edy,stx:edx]
         
-    h, w= select_data.shape   
+    h, w = select_data.shape   
     # print(f'Row(NX):{h}, Column(NY):{w}')
 
     start = (0,row_num)
@@ -481,7 +481,7 @@ def plot_3d_ax(qxy_data, axi=None, title='3d', pixel_size=PIX_SIZE, elev=45, azi
     # ax_.scatter3D(np.ravel(yy), np.ravel(xx),  qxy_data)
     # ax.set_title("Scatter Plot")
     
-    #Nanがあるとダメ
+    # If Nan exists, an error occurs.
     ax_.plot_surface(xx,yy, img_copy, cmap=CMAP, linewidth=0, antialiased=False)
 
     print(xx.shape,yy.shape,qxy_data.shape)
@@ -554,7 +554,7 @@ def plot_hist_ax(plot_data, axi=None, data_range=None, x_range=(0,0.15), bins_=1
     
     def data_quantail(data,val=0.85):
         wt_temp = data
-        wt_temp =np.where(wt_temp < np.nanquantile(data,val), wt_temp, np.nan)
+        wt_temp = np.where(wt_temp < np.nanquantile(data,val), wt_temp, np.nan)
         return wt_temp 
      
     # h, w = plot_data.shape

@@ -36,7 +36,7 @@ PIX_SIZE = 0.05
 DPI = 300
 EXT = 'png' # png, jpg, pdf
 
-plt.rcParams["font.size"] = 14
+# plt.rcParams["font.size"] = 14
 plt.rcParams['font.family']= 'sans-serif'
 plt.rcParams['font.sans-serif'] = ['Arial']
 
