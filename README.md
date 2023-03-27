@@ -125,5 +125,5 @@ https://github.com/s-yagyu/V-LBLP
 
 #### Sample dataset
 
-MDR
+[ [MDR] Sample data for X-ray visualization of local bending of the lattice planes (V-LBLP)](https://doi.org/10.48505/nims.3864)
 
