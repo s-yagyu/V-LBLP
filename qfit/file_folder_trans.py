@@ -10,19 +10,19 @@ fd.tif -> new fd.tif
 Memo
 rot (image rotation):affin transform GUI
 rc : fit.py
-q :q2.py
-T, T2 :file converter
-fd:folder
+q : q2.py
+T1, T2 :file converter T1: npy->tif, T2:tif->npy
+fd: folder
 
 method A (rc2rot): 
-RC(.tif->.npy) -> T(.npy->fd.tif) -> trimming(fd.tif->new fd.tif)
+RC(.tif->.npy) -> T1(.npy->fd.tif) -> trimming(fd.tif->new fd.tif)
 -> image rotaion(fd.tif->new fd.tif) -> T2(fd.tif->.npy) 
--> q(.npy->.npy)-> T(.npy->fd.tif)
+-> q(.npy->.npy)-> T1(.npy->fd.tif)
 
 method B (rot2rc): 
 image rotation(fd.tif-> new fd.tif) -> RC(fd.tif->.npy) 
--> T(.npy->fd.tif) -> trimming(fd.tif->new fd.tif) 
--> T2(fd.tif->.npy) -> q(.npy->.npy)-> T(.npy->fd.tif)
+-> T1(.npy->fd.tif) -> trimming(fd.tif->new fd.tif) 
+-> T2(fd.tif->.npy) -> q(.npy->.npy)-> T1(.npy->fd.tif)
  
 """
 
@@ -30,10 +30,10 @@ __author__ = "Shinjiro Yagyu"
 __license__ = "BSD-3-Clause"
 __copyright__ = "National Institute for Materials Science, Japan"
 __date__ = "2022/09/02"
-__version__= "1.0.0"
-__revised__ = "2022/09/02"
+__version__= "2.0.0"
+__revised__ = "2023/3/27"
 
-
+import fnmatch
 from pathlib import Path
 import shutil
 
@@ -79,8 +79,13 @@ def npy2folder(npy_file_name, NX=2368, NY=2240, tif_save=True):
     # print(p_tmp)
 
     # move file
+    # Error if "out_file_=" already exists
     for source in p_tmp:
-        shutil.move(str(source), str(p_dir))
+        try:
+            shutil.move(str(source), str(p_dir))
+        except:
+            print('error')
+            print('Change the output folder name: out_file_=  ')
 
     if tif_save:
         f_tmp = list(p_dir.glob(f"{p_npy.stem[:remove]}*.npy"))
@@ -170,7 +175,30 @@ def conv_tif2npy(file_dir):
     
     return npy_list
     
-    
+
+def search_list_with_wildcard(search_list, search_term='*_c.npy'):
+    """
+    Searches for items in a list that match a given search pattern.
+
+    Args:
+        search_list (list): The list of strings to search.
+        search_term (str): The search pattern to match against.
+            default  = '*_c.npy'
+            This pattern can contain wildcards like "*", "?", and "[abc]".
+
+    Returns:
+        List: A list of indices where the matched items are found.
+
+    Example:
+        >>> search_list = ["apple", "banana", "orange", "grape"]
+        >>> search_list_with_wildcard(search_list , "*ran*")
+        [1, 2]
+    """
+    indices = []
+    for ix, item in enumerate(search_list):
+        if fnmatch.fnmatch(str(item), search_term):
+            indices.append(ix)
+    return indices    
 
 if __name__ == '__main__':
     pass

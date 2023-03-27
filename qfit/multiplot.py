@@ -6,8 +6,8 @@ __author__ = "Shinjiro Yagyu"
 __license__ = "BSD-3-Clause"
 __copyright__ = "National Institute for Materials Science, Japan"
 __date__ = "2022/09/02"
-__version__= "1.0.0"
-__revised__ = "2023/01/15"
+__version__= "2.0.0"
+__revised__ = "2023/03/27"
 
 from pathlib import Path
 from PIL import Image
@@ -23,7 +23,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from qfit import re_analysis as rean
 from qfit import re_plot as replt
 
-# memo figsize=(width,height) wdth:height= 4:3 unit
+# memo figsize=(width,height) wdth:height= 4:3 
 # (row,col)->figsize(col*4,row*3): (3,4)->figsize(16,9)
 
 width_u = 5.2
