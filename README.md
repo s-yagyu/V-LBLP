@@ -89,7 +89,7 @@ As an analysis example, the 4-inch analysis result used in the paper [1] is atta
 ##### Pure python
 
 ```python
-pip install PyQt5, opencv-python, Pillow, scipy, numpy, matplotlib, tifffile, pandas, jupyter
+pip install PyQt5 opencv-python Pillow scipy numpy matplotlib tifffile pandas jupyter
 ```
 
 ##### Anaconda  (if use virtual environment)
