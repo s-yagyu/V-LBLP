@@ -111,7 +111,7 @@ Note: opencv version is need to over 4.4.
 - Clone or Zip from NIMS MDR ripositry or our github repository.
 
 [Osami Sakata and Shinjiro Yagyu: Visualizing local bending of lattice planes by extending two-azimuth synchrotron X-ray diffraction datasets to asymmetric reflection
-Science and Technology of Advanced Materials: Methods.(2023)](https://doi.org/10.1080/27660400.2023.2199130)
+; Science and Technology of Advanced Materials: Methods.(2023)](https://doi.org/10.1080/27660400.2023.2199130)
 
 https://github.com/s-yagyu/V-LBLP
 
