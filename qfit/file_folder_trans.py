@@ -11,15 +11,16 @@ Memo
 rot (image rotation):affin transform GUI
 rc : fit.py
 q : q2.py
-T1, T2 :file converter T1: npy->tif, T2:tif->npy
-fd: folder
+T1, T2 :file converter
+(T1: npy->tif, T2:tif->npy)
+fd: folder name
 
-method A (rc2rot): 
+method A (rc2rot: RC-> Trim-> Rot-> q): 
 RC(.tif->.npy) -> T1(.npy->fd.tif) -> trimming(fd.tif->new fd.tif)
 -> image rotaion(fd.tif->new fd.tif) -> T2(fd.tif->.npy) 
 -> q(.npy->.npy)-> T1(.npy->fd.tif)
 
-method B (rot2rc): 
+method B (rot2rc: : Rot-> RC-> Trim-> q): 
 image rotation(fd.tif-> new fd.tif) -> RC(fd.tif->.npy) 
 -> T1(.npy->fd.tif) -> trimming(fd.tif->new fd.tif) 
 -> T2(fd.tif->.npy) -> q(.npy->.npy)-> T1(.npy->fd.tif)

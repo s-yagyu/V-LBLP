@@ -152,7 +152,6 @@ def rc_12plots(read_rc_data, data_range=None, peak_range =(0,0),width_range =(0,
     fig.colorbar(im8,ax=ax8,cax=cax8)
     fig.colorbar(im10,ax=ax10,cax=cax10)
   
-    # plt.tight_layout()
     fig.suptitle(title)
 
     if save:
@@ -188,7 +187,6 @@ def rc_2plots(read_rc_data, data_range=None, peak_range=(0,0),width_range=(0,0),
     nrow=2
     ncol=2
     fig, ax = plt.subplots(nrow, ncol, figsize=(ncol*width_u,nrow*height_u), squeeze=False, tight_layout=True)
-    # fig, ax = plt.subplots(nrow, ncol, figsize=(10,8), squeeze=False, tight_layout=True)
 
     h,w  = read_rc_data['c'].shape
 
@@ -219,7 +217,6 @@ def rc_2plots(read_rc_data, data_range=None, peak_range=(0,0),width_range=(0,0),
     fig.colorbar(im0,ax=ax0,cax=cax0)
     fig.colorbar(im2,ax=ax2,cax=cax2)
 
-    # plt.tight_layout()
     fig.suptitle(title)
 
     if save:

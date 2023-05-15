@@ -1,11 +1,7 @@
 """
 Image treatment 
 - calling affine_transformation_parameters_editor_r.py
-- trimming GUI and triming
-
-ref opencv gui
-https://rasp.hateblo.jp/entry/2016/01/22/230852
-https://www.oit.ac.jp/is/nishiguchi-lab/?OpenCV-Python+%E6%BC%94%E7%BF%92/tutorial_008py
+- trimming GUI and trimming
 
 """
 
@@ -63,7 +59,7 @@ def img_editor_process():
     return output_folder_list, outstring
 
 def gui2trim(file_name, wh=1100, NX=2368, NY=2240, time_out=120):
-    """trim gui + triming Main function
+    """trim gui + trimming Main function
         wrapping pos_est_rect
         
     Args:
@@ -240,7 +236,7 @@ def trim(array, x, y, width, height):
 
 
 def folder2trim2tif(filename_or_path, x, y, width, height):
-    """fd tif -> triming -> new fd tif
+    """fd tif -> trimming -> new fd tif
 
     Args:
         filename_or_path (str): filename_or_path 

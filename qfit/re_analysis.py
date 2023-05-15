@@ -1,7 +1,7 @@
 """
-re-analsys tools
-    Data load (rc,q)
-    converting x,y to polar codinates(r,theta)
+Reanalysis Tool
+    Read RC and q.
+    Convert x,y to polar coordinates (r,theta)
 
 """
 
@@ -22,7 +22,7 @@ from qfit import file_folder_trans as fft
 
 
 def load_rc_tif(file_path):
-    """load rc  tif data
+    """load rc  from tif data
     
     Args:
         file_path (str):  Name of the folder where .npy and .tif files are stored.
@@ -190,8 +190,6 @@ def difference_2q(qaf,qbf,flag='minus'):
 
     return {'x':qtx, 'y':qty, 'z':qtz, 'xy':qtxy, 'ang':qt_ang, 'angxy':qt_angxy, 'r':qt_r}
 
-# --develop version
-# corrilation
 
 import numpy.ma as ma
 

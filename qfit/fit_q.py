@@ -62,8 +62,7 @@ def fit_analysis(target_file, method='hw', comment='', filter=30, pmax=30,
         folder_dir(str): Output folder name
         outstring([list(str)]):output from subprocess
     
-    Example:
-    
+    Examples:
         t_file =fm0
         t_folder, t_out = fit_analysis(target_file=t_file, method='gaussian', pmax=30, comment='GaN 4',filter=20, core=12)
         print(t_out[-3])

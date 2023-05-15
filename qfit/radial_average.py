@@ -1,5 +1,5 @@
 """
-Module for determining radial direction average 
+Module for radial mean value determination
 
 """
 
