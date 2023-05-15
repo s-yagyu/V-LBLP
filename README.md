@@ -73,8 +73,8 @@ As an analysis example, the 4-inch analysis result used in the paper [1] is atta
 
 #### Requrired PC power
 
-- OS：Windows (recomended)
--  / Linux / Mac
+- OS：Windows (recommended)
+- Unconfirmed for Linux and Mac.
 
 - Memory: 16GB over
 
@@ -84,7 +84,7 @@ As an analysis example, the 4-inch analysis result used in the paper [1] is atta
 
 - Python 3.8 over
 
-- IDE: Visual studio code（recomended）
+- IDE: Visual studio code (recommended）
 
 ##### Pure python
 
