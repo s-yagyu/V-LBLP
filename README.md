@@ -73,8 +73,7 @@ As an analysis example, the 4-inch analysis result used in the paper [1] is atta
 
 #### Requrired PC power
 
-- OS：Windows (recommended)
-- Unconfirmed for Linux and Mac.
+- OS：Windows (recommended). Unconfirmed for Linux and Mac.
 
 - Memory: 16GB over
 
