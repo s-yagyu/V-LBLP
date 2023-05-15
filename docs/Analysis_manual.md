@@ -78,7 +78,7 @@ As an analysis example, the 4-inch analysis result used in the paper [1] is atta
 
 #### Requrired PC power
 
-- OS：Windows  / Linux / Mac
+- OS：Windows (recommended). Unconfirmed for Linux and Mac.
 
 - Memory: 16GB over
 
@@ -93,7 +93,7 @@ As an analysis example, the 4-inch analysis result used in the paper [1] is atta
 ##### Pure python
 
 ```python
-pip install PyQt5, opencv-python, Pillow, scipy, numpy, matplotlib, tifffile, pandas, jupyter
+pip install PyQt5 opencv-python Pillow scipy numpy matplotlib tifffile pandas jupyter
 ```
 
 ##### Anaconda  (if use virtual environment)
@@ -117,7 +117,9 @@ Note: opencv version is need to over 4.4.
 
 https://github.com/s-yagyu/V-LBLP
 
+#### Sample dataset
 
+[MDR: Sample data for X-ray visualization of local bending of the lattice planes (V-LBLP)](https://doi.org/10.48505/nims.3864)
 
 
 ####  Folder structure in the package
@@ -896,7 +898,8 @@ python q2.py -t XXX(THETA).npy -c YYY(CAI).npy
 
 #### V-LBLP analysis 
 
-[1] Sakata, O. , Yagyu, S. sbmitted.
+[1] Osami Sakata and Shinjiro Yagyu(2023). Visualizing local bending of lattice planes by extending two-azimuth synchrotron X-ray diffraction datasets to asymmetric reflection. Science and Technology of Advanced Materials: Methods 3(1), 2199130.
+(https://doi.org/10.1080/27660400.2023.2199130)
 
 ##### 2 inch
 
